@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentNeuron × Pontoon — ROI Worksheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --tn-purple: #4A1FA8;
+  --tn-purple-mid: #6B3CC7;
+  --tn-purple-light: #EDE8FB;
+  --tn-purple-xlight: #F7F5FE;
+  --tn-teal: #00B4A6;
+  --tn-teal-light: #E0F7F5;
+  --tn-teal-dark: #007A70;
+  --ink: #0F0F1A;
+  --ink-2: #2A2A42;
+  --ink-3: #5E5E7A;
+  --ink-4: #9898B0;
+  --surface: #FAFAFA;
+  --surface-2: #F3F3F8;
+  --border: #E2E0EE;
+  --white: #FFFFFF;
+  --amber: #E8900A;
+  --amber-light: #FEF6E4;
+  --green: #0A7055;
+  --green-light: #E4F5F0;
+  --red: #C0392B;
+}
+
+html { font-size: 15px; scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--tn-purple);
+  padding: 0 0 0 0;
+  position: relative;
+  overflow: hidden;
+}
+.header-inner {
+  position: relative;
+  z-index: 2;
+  padding: 36px 56px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+.header-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(0,180,166,.18) 0%, transparent 60%),
+              radial-gradient(ellipse at 10% 80%, rgba(107,60,199,.4) 0%, transparent 50%);
+}
+.logo-lockup { display: flex; align-items: center; gap: 14px; }
+.logo-mark {
+  width: 36px; height: 36px;
+  background: var(--tn-teal);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-mark svg { width: 20px; height: 20px; }
+.logo-text {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -.01em;
+}
+.logo-text span { color: var(--tn-teal); }
+
+.header-center { flex: 1; text-align: center; }
+.header-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  margin-bottom: 8px;
+}
+.header-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+}
+.header-title em { color: var(--tn-teal); font-style: normal; }
+
+.header-right { text-align: right; flex-shrink: 0; }
+.total-label { font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.total-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--tn-teal);
+  letter-spacing: -.02em;
+  line-height: 1;
+}
+.total-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 4px; }
+
+.progress-strip {
+  height: 4px;
+  background: rgba(255,255,255,.1);
+  position: relative;
+}
+.progress-fill-strip {
+  height: 100%;
+  background: linear-gradient(90deg, var(--tn-teal), #5CF0E0);
+  transition: width .5s ease;
+  border-radius: 0 2px 2px 0;
+}
+
+/* ── LAYOUT ── */
+.body-wrap { max-width: 1060px; margin: 0 auto; padding: 40px 40px 80px; }
+
+/* ── INTRO ── */
+.intro-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+}
+.intro-text { font-size: 14px; color: var(--ink-2); line-height: 1.65; }
+.intro-text strong { color: var(--tn-purple); }
+.investment-box {
+  background: var(--tn-purple-xlight);
+  border: 1px solid var(--tn-purple-light);
+  border-radius: 10px;
+  padding: 20px 24px;
+  text-align: center;
+  min-width: 160px;
+}
+.inv-label { font-size: 11px; color: var(--tn-purple-mid); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; font-weight: 500; }
+.inv-range { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: var(--tn-purple); letter-spacing: -.01em; }
+.inv-note { font-size: 11px; color: var(--ink-4); margin-top: 4px; }
+.target-box {
+  background: var(--tn-teal-light);
+  border: 1px solid rgba(0,180,166,.25);
+  border-radius: 10px;
+  padding: 16px 20px;
+  text-align: center;
+  margin-top: 10px;
+}
+.target-label { font-size: 11px; color: var(--tn-teal-dark); letter-spacing: .06em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+.target-val { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--tn-teal-dark); }
+
+/* ── SECTION ── */
+.section { margin-bottom: 28px; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.section-num {
+  width: 32px; height: 32px;
+  background: var(--tn-purple);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+.section-title-wrap { flex: 1; }
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.01em;
+}
+.section-subtitle { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
+.section-roi {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--tn-teal-dark);
+}
+.section-roi-label { font-size: 11px; color: var(--ink-4); text-align: right; }
+
+.section-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* ── QUESTION BLOCK ── */
+.q-block {
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.q-block:last-child { border-bottom: none; }
+.q-block.full-width { grid-template-columns: 1fr; }
+
+.q-prompt { }
+.q-why {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--tn-teal-dark);
+  margin-bottom: 6px;
+}
+.q-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.q-boardframe {
+  font-size: 12px;
+  color: var(--ink-3);
+  line-height: 1.55;
+  padding-left: 12px;
+  border-left: 2px solid var(--tn-purple-light);
+}
+.q-boardframe strong { color: var(--tn-purple-mid); }
+
+.q-input-wrap { }
+.q-input-label { font-size: 11px; color: var(--ink-4); font-weight: 500; margin-bottom: 6px; letter-spacing: .04em; }
+
+input[type="number"], input[type="text"], select, textarea {
+  width: 100%;
+  background: var(--surface-2);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  transition: border-color .15s, box-shadow .15s;
+  outline: none;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--tn-purple-mid);
+  box-shadow: 0 0 0 3px rgba(74,31,168,.08);
+  background: var(--white);
+}
+textarea { resize: vertical; min-height: 72px; }
+
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.input-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+
+.calc-result {
+  background: var(--tn-purple-xlight);
+  border: 1px solid var(--tn-purple-light);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.calc-result-label { font-size: 12px; color: var(--tn-purple-mid); font-weight: 500; }
+.calc-result-value {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tn-purple);
+}
+
+.note-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+.note-guide { background: var(--tn-teal-light); color: var(--tn-teal-dark); }
+.note-caution { background: var(--amber-light); color: var(--amber); }
+.note-board { background: var(--tn-purple-light); color: var(--tn-purple); }
+
+/* ── TEAL CALLOUT ── */
+.teal-callout {
+  background: var(--tn-teal-light);
+  border-left: 4px solid var(--tn-teal);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  margin: 16px 28px;
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+.teal-callout strong { color: var(--tn-teal-dark); }
+
+/* ── SUMMARY ── */
+.summary-section {
+  background: var(--tn-purple);
+  border-radius: 16px;
+  padding: 36px 40px;
+  margin-top: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.summary-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 90% 20%, rgba(0,180,166,.2) 0%, transparent 50%);
+}
+.summary-inner { position: relative; z-index: 2; }
+.summary-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  letter-spacing: -.01em;
+}
+
+.summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 28px; }
+.summary-card {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 10px;
+  padding: 16px;
+}
+.sc-label { font-size: 10px; color: rgba(255,255,255,.5); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.sc-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+.sc-val.teal { color: var(--tn-teal); }
+
+.roi-bar-wrap { margin-bottom: 24px; }
+.roi-bar-label { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 8px; }
+.roi-bar-track { height: 8px; background: rgba(255,255,255,.12); border-radius: 4px; overflow: hidden; }
+.roi-bar-fill { height: 100%; background: linear-gradient(90deg, var(--tn-teal), #5CF0E0); border-radius: 4px; transition: width .6s ease; min-width: 2px; }
+
+.narrative-box {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px;
+  padding: 18px 22px;
+}
+.narrative-label { font-size: 10px; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
+.narrative-text { font-size: 13.5px; color: rgba(255,255,255,.85); line-height: 1.7; }
+
+/* ── DIVIDER ── */
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0 28px;
+}
+
+/* ── HELPER ── */
+.helper-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+.helper-board { background: var(--tn-purple-light); color: var(--tn-purple); }
+.helper-guide { background: var(--tn-teal-light); color: var(--tn-teal-dark); }
+
+@media(max-width:760px){
+  .q-block { grid-template-columns: 1fr; }
+  .input-row, .input-row.triple { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+  .header-inner { flex-direction: column; align-items: flex-start; gap:16px; }
+  .body-wrap { padding: 24px 20px 60px; }
+  .intro-card { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-inner">
+    <div class="logo-lockup">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/>
+          <path d="M6 10h8M10 6v8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">Talent<span>Neuron</span></div>
+    </div>
+    <div class="header-center">
+      <div class="header-eyebrow">Pontoon Solutions × TalentNeuron</div>
+      <div class="header-title">Investment ROI <em>Worksheet</em></div>
+    </div>
+    <div class="header-right">
+      <div class="total-label">Projected Annual ROI</div>
+      <div class="total-value" id="grand-total">$0</div>
+      <div class="total-sub">Annual value identified · ROI calculated after pricing</div>
+    </div>
+  </div>
+  <div class="progress-strip">
+    <div class="progress-fill-strip" id="progress-strip" style="width:0%"></div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    <div class="intro-text">
+      This worksheet surfaces the numbers a board or C-suite needs to approve a significant annual investment in TalentNeuron. Work through each section together. Not every field will have a precise number — that's expected. Use ranges where needed. The goal is to build a <strong>defensible value story</strong> before any pricing conversation happens. ROI multiple and payback period will be calculated and included in the formal proposal.
+    </div>
+    <div>
+      <div class="investment-box">
+        <div class="inv-label">What We're Building</div>
+        <div class="inv-range" style="font-size:16px;line-height:1.3;">A Board-Ready<br>Value Case</div>
+        <div class="inv-note">Pricing follows the value conversation</div>
+      </div>
+      <div class="target-box">
+        <div class="target-label">The Standard</div>
+        <div class="target-val" style="font-size:16px;">Value must exceed<br>investment by 10×</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       LEVER 1: RATE CARD EFFICIENCY
+  ════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Rate Card &amp; Manual Process Efficiency</div>
+        <div class="section-subtitle">Quantifying the cost of doing this manually today</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 1 Value</div>
+        <div class="section-roi" id="l1-total">$0</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura</div>
+          <div class="q-text">How many people are involved in the annual rate card refresh process, and roughly how many hours does each person spend on it?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Labor cost of a manual process that can be automated is one of the fastest ROI calculations to make — and one of the easiest to defend. Every hour spent on manual rate card work is an hour not spent on higher-value analysis.</div>
+          <div class="note-pill note-guide">✦ Laura mentioned "full-time work for multiple resources" in the first call</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">Rate card team — annual effort</div>
+          <div class="input-row">
+            <div>
+              <div class="q-input-label">Number of people involved</div>
+              <input type="number" id="rc-people" placeholder="e.g. 3" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="q-input-label">Hours per person per year</div>
+              <input type="number" id="rc-hours" placeholder="e.g. 400" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div>
+            <div class="q-input-label">Avg fully-loaded hourly cost (salary + benefits)</div>
+            <input type="number" id="rc-rate" placeholder="e.g. 75" min="0" oninput="calc()" onchange="calc()">
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Annual cost of manual process</div>
+            <div class="calc-result-value" id="rc-cost">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura</div>
+          <div class="q-text">What percentage of the current manual rate card effort would automation realistically eliminate?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Manual processes introduce pricing risk and consume FTE capacity. The % eliminated drives the efficiency savings calculation directly — the annual cost of the current process is calculated above, this percentage is applied to it.</div>
+          <div class="note-pill note-guide">✦ 50–70% is a defensible and conservative range. Walk through each process step and identify which disappear with an automated data feed.</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">% of total effort eliminated by automation</div>
+          <input type="number" id="rc-pct" placeholder="e.g. 70" min="0" max="100" oninput="calc()" onchange="calc()" style="margin-bottom:12px;">
+          <div class="calc-result">
+            <div class="calc-result-label">Annual efficiency savings (Lever 1)</div>
+            <div class="calc-result-value" id="rc-savings">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teal-callout">
+        <strong>Framing note for steering committee:</strong> Even at 50% automation of the current manual effort, this lever alone likely recovers a meaningful fraction of the investment cost. Frame it as "we are paying $X today for manual work that will be eliminated — and getting better data quality in exchange."
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       LEVER 2: SOW NEGOTIATION VALUE
+  ════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">SOW Negotiation &amp; Cost Avoidance</div>
+        <div class="section-subtitle">The financial impact of better upstream pricing intelligence</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 2 Value</div>
+        <div class="section-roi" id="l2-total">$0</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask David Orme</div>
+          <div class="q-text">What is the total annual value of SOW contracts that Pontoon manages or advises on? Even a rough order of magnitude.</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> This is the denominator. Even a 0.5% improvement in SOW rate accuracy against a large managed spend base produces a number that dwarfs the investment. The board needs the denominator to evaluate the ROI.</div>
+          <div class="note-pill note-caution">⚠ This number may be sensitive — frame as "we won't share it externally, it just helps us show the board why this matters"</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">Annual SOW managed / advised spend ($M)</div>
+          <input type="number" id="sow-spend" placeholder="e.g. 500" min="0" oninput="calc()" onchange="calc()">
+          <div class="note-pill note-guide" style="margin-top:8px;">✦ If they won't give a number, ask: "Is it closer to $100M, $500M, or $1B+?"</div>
+          <div class="q-input-label" style="margin-top:14px;">Estimated rate accuracy improvement (%)</div>
+          <input type="number" id="sow-pct" placeholder="e.g. 1.5" min="0" step="0.1" oninput="calc()" onchange="calc()">
+          <div class="note-pill note-guide">✦ Even 1% is conservative for moving from manual to data-driven pricing</div>
+          <div class="calc-result">
+            <div class="calc-result-label">Annual SOW cost avoidance / value captured</div>
+            <div class="calc-result-value" id="sow-value">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask David Orme</div>
+          <div class="q-text">When Pontoon enters an SOW negotiation without current market rate data, what does that typically cost — either in margin erosion or in time to negotiate?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Pricing defensibility is a risk management story. The board cares about protecting margin. "We currently negotiate without data and here is what that costs us" is a compelling risk frame.</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">Estimated number of SOW negotiations per year</div>
+          <input type="number" id="sow-negs" placeholder="e.g. 200" min="0" oninput="calc()" onchange="calc()">
+          <div class="q-input-label" style="margin-top:10px;">Avg hours saved per negotiation with better data</div>
+          <input type="number" id="sow-hrs" placeholder="e.g. 3" min="0" oninput="calc()" onchange="calc()">
+          <div class="q-input-label" style="margin-top:10px;">Hourly cost of negotiation team</div>
+          <input type="number" id="sow-rate" placeholder="e.g. 100" min="0" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Negotiation time savings</div>
+            <div class="calc-result-value" id="sow-time-val">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teal-callout">
+        <strong>The key board question here:</strong> "If you had defensible, current market rate data going into every SOW negotiation, what would a 1% improvement in pricing outcomes mean at your managed spend volume?" Let them do that math — the answer is usually arresting.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       LEVER 3: PATHFINDER REVENUE
+  ════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Pathfinder — Revenue Enablement</div>
+        <div class="section-subtitle">TalentNeuron as the intelligence layer powering a proprietary Pontoon product</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 3 Value</div>
+        <div class="section-roi" id="l3-total">$0</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura</div>
+          <div class="q-text">What is Pathfinder expected to do for Pontoon's win rate or client retention once it's live? Has leadership put a commercial target on it?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Pathfinder is a proprietary tool Pontoon intends to take to market. If TalentNeuron is the intelligence layer that makes it credible, the ROI question is: what is Pathfinder worth to Pontoon commercially? The investment becomes infrastructure for a revenue-generating product.</div>
+          <div class="note-pill note-board">★ This is the highest-value frame for steering committee — it connects the investment to new revenue, not just cost reduction</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">Pathfinder — expected annual client impact</div>
+          <div class="input-row">
+            <div>
+              <div class="q-input-label">New clients enabled / retained by Pathfinder</div>
+              <input type="number" id="pf-clients" placeholder="e.g. 5" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="q-input-label">Average annual revenue per client ($K)</div>
+              <input type="number" id="pf-rev" placeholder="e.g. 500" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Pathfinder-attributable revenue (conservative)</div>
+            <div class="calc-result-value" id="pf-value">—</div>
+          </div>
+          <div class="note-pill note-guide" style="margin-top:8px;">✦ Even 1–2 new client wins attributable to Pathfinder's differentiation likely 10× the TalentNeuron investment alone</div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura</div>
+          <div class="q-text">What happens to Pathfinder's credibility with clients if the rate data powering it is wrong or stale? What does a mispriced recommendation cost Pontoon?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Data quality is not just a technical question — it's a liability question. If Pathfinder mis-recommends a staffing model and the client is overcharged, that is a relationship and reputational cost. Accurate data is risk mitigation for a client-facing tool.</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">Describe the risk (qualitative — in Laura's words)</div>
+          <textarea id="pf-risk" placeholder="e.g. 'If Pathfinder recommends SOW when it should be staff aug and the client is overcharged, we lose the account...'"></textarea>
+          <div class="note-pill note-caution" style="margin-top:8px;">⚠ Capture this in Laura's exact language — it becomes the risk statement in the steering committee deck</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       LEVER 4: MARKET INTEL PUBLISHING
+  ════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Market Intelligence Practice — Differentiation Value</div>
+        <div class="section-subtitle">Pontoon building an external-facing intelligence capability powered by TalentNeuron data</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 4 Value</div>
+        <div class="section-roi" id="l4-total">$0</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura</div>
+          <div class="q-text">When Pontoon publishes market intelligence that clients use in their own planning — does that show up in retention rates, expanded scope, or competitive wins? Has anyone put a number on what that capability is worth?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> An MSP that publishes credible market intelligence is a strategic partner, not a vendor. The board question is: what is the revenue difference between being a vendor and being a strategic partner? That delta is what this capability is worth.</div>
+          <div class="note-pill note-board">★ This is a differentiation and retention story — frame it as "what does it cost us NOT to have this"</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">Market intel impact — retention</div>
+          <div class="input-row">
+            <div>
+              <div class="q-input-label">Client accounts at risk of churn annually</div>
+              <input type="number" id="mi-churn" placeholder="e.g. 10" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="q-input-label">Avg annual revenue per account ($K)</div>
+              <input type="number" id="mi-rev" placeholder="e.g. 800" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div>
+            <div class="q-input-label">% reduction in churn risk from market intel capability</div>
+            <input type="number" id="mi-pct" placeholder="e.g. 20" min="0" max="100" oninput="calc()" onchange="calc()">
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Retention value (conservative)</div>
+            <div class="calc-result-value" id="mi-value">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura</div>
+          <div class="q-text">Is there a commercial model being considered where Pontoon charges clients directly for market intelligence reports or data-driven advisory — or is it bundled into existing relationships?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> If market intelligence becomes a billable service, the investment has a direct revenue line. Even if it remains bundled, the competitive differentiation value of being the MSP that publishes credible market data is measurable in win rates.</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">Potential direct revenue from market intel (annual, $K)</div>
+          <input type="number" id="mi-direct" placeholder="e.g. 0 if bundled, or estimate if billable" min="0" oninput="calc()" onchange="calc()">
+          <div class="q-input-label" style="margin-top:10px;">Describe the competitive differentiation value (in Laura's words)</div>
+          <textarea id="mi-qual" placeholder="e.g. 'We are the only MSP in our competitive set that can show a client real-time supply/demand data for the markets they operate in...'"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       LEVER 5: ADECCO GROUP EXPANSION
+  ════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Adecco Group Expansion — The Multiplier</div>
+        <div class="section-subtitle">Pontoon as the entry point; Akkodis, LHH, and Adecco brands as the expansion path</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 5 Value</div>
+        <div class="section-roi" id="l5-total">$0</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura</div>
+          <div class="q-text">You mentioned the Adecco Group opportunity twice in our conversations. When you present this to leadership, are you framing TalentNeuron as a Pontoon investment or as a group-level capability? Who in the group would benefit from access to this data?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> A €23B group considering a $200K entry investment in a capability that scales across Akkodis, LHH, and Adecco staffing brands is not making a vendor decision — it's making a platform decision. The total value trajectory is what justifies the price point.</div>
+          <div class="note-pill note-board">★ This is Laura's stated justification mechanism — surface it explicitly so it goes into the proposal</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">Which Adecco Group entities could benefit?</div>
+          <textarea id="group-entities" placeholder="e.g. Akkodis (tech staffing), LHH (career transition + learning), Adecco staffing brands, Pontoon RPO..."></textarea>
+          <div class="input-row" style="margin-top:10px;">
+            <div>
+              <div class="q-input-label">Estimated group entities in scope</div>
+              <input type="number" id="group-count" placeholder="e.g. 3" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="q-input-label">Estimated expansion value per entity ($K/yr)</div>
+              <input type="number" id="group-val" placeholder="e.g. 150" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Group expansion potential (annual)</div>
+            <div class="calc-result-value" id="group-value">—</div>
+          </div>
+          <div class="note-pill note-caution" style="margin-top:8px;">⚠ Present as potential, not commitment — "if [entities] adopt at a similar scope, the group-level value becomes..."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       LEVER 6: RISK / COST OF INACTION
+  ════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Cost of Inaction — The Risk Frame</div>
+        <div class="section-subtitle">What staying manual costs Pontoon over 12–24 months</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="q-block full-width">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura — this is the most powerful board question</div>
+          <div class="q-text">If Pontoon doesn't solve this problem in the next 12 months, what is the realistic worst-case scenario — a competitor wins clients because they have better market intelligence, Pathfinder launches without credible rate data, or the rate card process breaks down under volume?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Boards approve investments when the cost of NOT investing is clear. The risk frame is often more powerful than the ROI frame. "We are currently exposed to X risk, and this investment eliminates it" is a faster approval path than "we will generate Y return."</div>
+        </div>
+      </div>
+      <div class="q-block full-width" style="border-top:1px solid var(--border); padding-top:20px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+          <div>
+            <div class="helper-tag helper-board">Competitive risk</div>
+            <textarea id="risk-competitive" placeholder="e.g. 'Competitors who publish market data win advisory mandates we currently lose because we can't show the data...'"></textarea>
+          </div>
+          <div>
+            <div class="helper-tag helper-board">Operational risk</div>
+            <textarea id="risk-operational" placeholder="e.g. 'Rate card process breaks down if we add more clients — we're already at capacity with manual process...'"></textarea>
+          </div>
+          <div>
+            <div class="helper-tag helper-board">Reputational risk</div>
+            <textarea id="risk-reputational" placeholder="e.g. 'If Pathfinder gives a client a wrong recommendation and they overpay, we lose the relationship...'"></textarea>
+          </div>
+        </div>
+        <div style="margin-top:14px;">
+          <div class="helper-tag helper-guide">In Laura's words — what does she say when you ask what keeps her up at night about this?</div>
+          <textarea id="risk-top" placeholder="Capture her exact words here — this becomes the opening risk statement in the steering committee deck"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       USAGE DATA — FOR INTERNAL USE
+  ════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num" style="background:var(--tn-teal-dark);">↗</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Usage Profile — Scope &amp; Consumption</div>
+        <div class="section-subtitle">Gather this information together. It informs scope — not pricing. Pricing comes later.</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+
+      <!-- API VOLUME -->
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura + Christian</div>
+          <div class="q-text">Help us understand how each use case would actually consume data so we can make sure the scope of what we propose is right for how you'll use it.</div>
+          <div class="q-boardframe"><strong>Why this matters:</strong> Right-sizing the scope means Pontoon gets exactly what they need — no more, no less. A vendor who asks these questions before proposing is a partner. One who doesn't is guessing.</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label" style="font-weight:600;color:var(--ink-2);margin-bottom:10px;">Use Case 1 — Rate Card Automation</div>
+          <div class="input-row">
+            <div>
+              <div class="q-input-label">Rate cards refreshed per year</div>
+              <input type="number" id="rc-cards" placeholder="e.g. 55" min="0">
+            </div>
+            <div>
+              <div class="q-input-label">Unique titles across all rate cards</div>
+              <input type="number" id="api-rc-titles" placeholder="e.g. 500" min="0">
+            </div>
+          </div>
+          <div class="input-row">
+            <div>
+              <div class="q-input-label">Refresh frequency (times/year)</div>
+              <input type="number" id="api-rc-freq" placeholder="e.g. 2" min="0">
+            </div>
+          </div>
+          <div class="note-pill note-guide">✦ Rate cards × titles × refresh frequency = total annual API queries for rate card automation</div>
+
+          <div class="q-input-label" style="font-weight:600;color:var(--ink-2);margin-top:18px;margin-bottom:10px;">Use Case 2 — Pathfinder</div>
+          <div class="input-row">
+            <div>
+              <div class="q-input-label">Estimated queries per day</div>
+              <input type="number" id="api-pf-daily" placeholder="e.g. 50" min="0">
+            </div>
+            <div>
+              <div class="q-input-label">Operating days per year</div>
+              <input type="number" id="api-pf-days" placeholder="e.g. 250" min="0">
+            </div>
+          </div>
+          <div class="note-pill note-guide">✦ Ask Christian: real-time per request, or batched refresh? Real-time = significantly higher volume</div>
+
+          <div class="q-input-label" style="font-weight:600;color:var(--ink-2);margin-top:18px;margin-bottom:10px;">Use Case 3+4 — SOW &amp; Market Intel</div>
+          <div class="input-row">
+            <div>
+              <div class="q-input-label">Ad hoc API queries/month</div>
+              <input type="number" id="api-sow-monthly" placeholder="e.g. 200" min="0">
+            </div>
+            <div>
+              <div class="q-input-label">Scheduled data pulls/month</div>
+              <input type="number" id="api-sched-monthly" placeholder="e.g. 50" min="0">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UI USAGE -->
+      <div class="q-block" style="border-top:1px solid var(--border);">
+        <div class="q-prompt">
+          <div class="q-why">Ask Laura</div>
+          <div class="q-text">The LMI platform UI is separate from the DaaS API — it's for exploratory research, market signal analysis, and ad hoc work that doesn't go through Pathfinder. Who on the team would use it, and how often?</div>
+          <div class="q-boardframe"><strong>What this tells us:</strong> Whether UI access belongs in the initial scope or can be phased in. The market intel publishing team almost certainly needs it. Pathfinder and rate card automation run entirely through the API.</div>
+        </div>
+        <div class="q-input-wrap">
+          <div class="q-input-label">Who would use the UI?</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:10px 14px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;">
+              <input type="checkbox" id="ui-market" style="width:auto;background:none;border:none;box-shadow:none;padding:0;flex-shrink:0;">
+              Market intel / publishing team
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:10px 14px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;">
+              <input type="checkbox" id="ui-sow" style="width:auto;background:none;border:none;box-shadow:none;padding:0;flex-shrink:0;">
+              SOW / procurement team
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:10px 14px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;">
+              <input type="checkbox" id="ui-rc" style="width:auto;background:none;border:none;box-shadow:none;padding:0;flex-shrink:0;">
+              Rate card / pricing team
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:10px 14px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;">
+              <input type="checkbox" id="ui-exec" style="width:auto;background:none;border:none;box-shadow:none;padding:0;flex-shrink:0;">
+              Leadership / exec reporting
+            </label>
+          </div>
+          <div class="input-row">
+            <div>
+              <div class="q-input-label">Estimated UI seats</div>
+              <input type="number" id="ui-seats" placeholder="e.g. 8" min="0">
+            </div>
+            <div>
+              <div class="q-input-label">Avg days/week accessed</div>
+              <input type="number" id="ui-freq" placeholder="e.g. 3" min="0" max="7">
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <div class="q-input-label">UI in initial scope or phase 2?</div>
+            <select id="ui-essential">
+              <option value="">— Select —</option>
+              <option value="essential">Essential from day one</option>
+              <option value="supplementary">Nice to have — include if possible</option>
+              <option value="later">Phase 2 — start API only</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       SUMMARY
+  ════════════════════════════════════ -->
+  <div class="summary-section">
+    <div class="summary-bg"></div>
+    <div class="summary-inner">
+      <div class="summary-title">ROI Summary — Board &amp; C-Suite View</div>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="sc-label">Lever 1 — Efficiency</div>
+          <div class="sc-val teal" id="s-l1">$0</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Lever 2 — SOW Value</div>
+          <div class="sc-val teal" id="s-l2">$0</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Lever 3+4 — Revenue</div>
+          <div class="sc-val teal" id="s-l34">$0</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Lever 5 — Group Expansion</div>
+          <div class="sc-val teal" id="s-l5">$0</div>
+        </div>
+      </div>
+
+      <div class="summary-grid" style="margin-bottom:24px;">
+        <div class="summary-card" style="grid-column:span 2;">
+          <div class="sc-label">Total Annual Value</div>
+          <div class="sc-val teal" id="s-total">$0</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">ROI Multiple</div>
+          <div class="sc-val teal" id="s-multiple">—</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Payback Period</div>
+          <div class="sc-val teal" id="s-payback">—</div>
+        </div>
+      </div>
+
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label">
+          <span id="bar-label-text">Total value identified</span>
+          <span id="bar-pct-label" style="color:rgba(255,255,255,.5);">Investment TBD</span>
+        </div>
+        <div class="roi-bar-track">
+          <div class="roi-bar-fill" id="roi-bar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="narrative-box">
+        <div class="narrative-label">Steering Committee Narrative — auto-generated</div>
+        <div class="narrative-text" id="narrative">Fill in the worksheet above to generate the board-ready summary narrative.</div>
+      </div>
+
+      <!-- INTERNAL ONLY: Investment input — not shown during prospect session -->
+      <div id="investment-block" style="margin-top:20px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.15);border-radius:10px;padding:18px 22px;">
+        <div style="font-family:'Inter',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:12px;">— Internal use only — complete after the meeting —</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:end;">
+          <div>
+            <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px;">Annual investment ($)</div>
+            <input type="number" id="investment-input" placeholder="Enter after pricing model applied" min="0" oninput="calc()" onchange="calc()"
+              style="background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.15);color:#fff;border-radius:8px;padding:10px 14px;font-size:14px;font-family:'Inter',sans-serif;width:100%;outline:none;">
+          </div>
+          <div style="font-size:12px;color:rgba(255,255,255,.35);line-height:1.5;">
+            Enter the final price after running your pricing model. ROI multiple and payback period will calculate automatically. Share the completed worksheet with Pontoon as a follow-up.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /body-wrap -->
+
+
+<script>
+function fmt(n) {
+  if (!n || isNaN(n) || n === 0) return '—';
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+  return '$' + Math.round(n);
+}
+function fmtShort(n) {
+  if (!n || isNaN(n) || n === 0) return '$0';
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+  return '$' + Math.round(n);
+}
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? (parseFloat(el.value) || 0) : 0;
+}
+function set(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
+function countFilled() {
+  const inputs = document.querySelectorAll('input[type="number"]:not(#investment-input)');
+  let filled = 0;
+  inputs.forEach(i => { if (i.value && parseFloat(i.value) > 0) filled++; });
+  return Math.min(100, Math.round((filled / inputs.length) * 100));
+}
+
+function calc() {
+  // L1: Rate card efficiency
+  const rcCost = val('rc-people') * val('rc-hours') * val('rc-rate');
+  const rcSavings = rcCost * (val('rc-pct') / 100);
+  set('rc-cost', rcCost ? fmt(rcCost) : '—');
+  set('rc-savings', rcSavings ? fmt(rcSavings) : '—');
+  const l1 = rcSavings;
+  set('l1-total', fmtShort(l1));
+  set('s-l1', fmtShort(l1));
+
+  // L2: SOW
+  const sowVal = (val('sow-spend') * 1000000) * (val('sow-pct') / 100);
+  const sowTime = val('sow-negs') * val('sow-hrs') * val('sow-rate');
+  const l2 = sowVal + sowTime;
+  set('sow-value', sowVal ? fmt(sowVal) : '—');
+  set('sow-time-val', sowTime ? fmt(sowTime) : '—');
+  set('l2-total', fmtShort(l2));
+  set('s-l2', fmtShort(l2));
+
+  // L3: Pathfinder
+  const pfVal = (val('pf-clients') * val('pf-rev')) * 1000;
+  const l3 = pfVal;
+  set('pf-value', pfVal ? fmt(pfVal) : '—');
+  set('l3-total', fmtShort(l3));
+
+  // L4: Market intel
+  const miRetention = val('mi-churn') * (val('mi-rev') * 1000) * (val('mi-pct') / 100);
+  const miDirect = val('mi-direct') * 1000;
+  const l4 = miRetention + miDirect;
+  set('mi-value', miRetention ? fmt(miRetention) : '—');
+  set('l4-total', fmtShort(l4));
+  set('s-l34', fmtShort(l3 + l4));
+
+  // L5: Group
+  const groupVal = val('group-count') * (val('group-val') * 1000);
+  const l5 = groupVal;
+  set('group-value', groupVal ? fmt(groupVal) : '—');
+  set('l5-total', fmtShort(l5));
+  set('s-l5', fmtShort(l5));
+
+  // Total value
+  const total = l1 + l2 + l3 + l4 + l5;
+  set('grand-total', fmtShort(total));
+  set('s-total', fmtShort(total));
+
+  // Investment — only activates when Matt enters it post-meeting
+  const investment = val('investment-input');
+  if (investment > 0 && total > 0) {
+    const multiple = total / investment;
+    const paybackMonths = Math.round((investment / total) * 12);
+    set('s-multiple', multiple.toFixed(1) + '×');
+    set('s-payback', paybackMonths + ' months');
+    const barPct = Math.min(100, Math.round((total / (investment * 10)) * 100));
+    document.getElementById('roi-bar').style.width = barPct + '%';
+    set('bar-pct-label', barPct + '% of 10× target');
+    set('bar-label-text', 'Progress to 10× return');
+    generateNarrative(total, multiple, l1, l2, l3, l4, l5, paybackMonths, investment);
+  } else {
+    set('s-multiple', '—');
+    set('s-payback', '—');
+    // Bar shows total value progress toward an illustrative $3M target while pricing is TBD
+    const barPct = total > 0 ? Math.min(100, Math.round((total / 3000000) * 100)) : 0;
+    document.getElementById('roi-bar').style.width = barPct + '%';
+    set('bar-pct-label', total > 0 ? fmtShort(total) + ' identified' : '$0 identified');
+    set('bar-label-text', 'Total annual value identified');
+    if (total > 0) generateNarrativeNoPrice(total, l1, l2, l3, l4, l5);
+    else set('narrative', 'Fill in the worksheet above to generate the board-ready summary narrative.');
+  }
+
+  // Progress strip
+  document.getElementById('progress-strip').style.width = countFilled() + '%';
+}
+
+function generateNarrative(total, multiple, l1, l2, l3, l4, l5, payback, investment) {
+  let parts = [];
+  if (l1 > 0) parts.push(`${fmtShort(l1)} in rate card process efficiency`);
+  if (l2 > 0) parts.push(`${fmtShort(l2)} in SOW pricing accuracy and negotiation time`);
+  if (l3 + l4 > 0) parts.push(`${fmtShort(l3+l4)} in Pathfinder revenue enablement and market intelligence differentiation`);
+  if (l5 > 0) parts.push(`${fmtShort(l5)} in Adecco Group expansion potential`);
+  const levers = parts.length > 1 ? parts.slice(0,-1).join(', ') + ', and ' + parts[parts.length-1] : parts[0] || '';
+  const multipleStr = multiple >= 10
+    ? `a ${multiple.toFixed(1)}× return — exceeding the 10× threshold for this category of investment`
+    : `a ${multiple.toFixed(1)}× return against the annual investment`;
+  set('narrative', `A ${fmtShort(investment)} annual investment in TalentNeuron's DaaS and LMI platform is projected to deliver ${fmtShort(total)} in annual value across ${parts.length} measurable levers — ${levers}. This represents ${multipleStr}, with a payback period of approximately ${payback} months. The investment powers two of Pontoon's highest-priority commercial initiatives — Pathfinder and the market intelligence practice — while creating an Adecco Group-level platform opportunity. The cost of inaction includes manual pricing risk, delayed Pathfinder credibility, and ceding market intelligence differentiation to competitors.`);
+}
+
+function generateNarrativeNoPrice(total, l1, l2, l3, l4, l5) {
+  let parts = [];
+  if (l1 > 0) parts.push(`${fmtShort(l1)} in rate card process efficiency`);
+  if (l2 > 0) parts.push(`${fmtShort(l2)} in SOW pricing accuracy and negotiation time`);
+  if (l3 + l4 > 0) parts.push(`${fmtShort(l3+l4)} in Pathfinder revenue enablement and market intelligence differentiation`);
+  if (l5 > 0) parts.push(`${fmtShort(l5)} in Adecco Group expansion potential`);
+  const levers = parts.length > 1 ? parts.slice(0,-1).join(', ') + ', and ' + parts[parts.length-1] : parts[0] || '';
+  set('narrative', `This analysis identifies ${fmtShort(total)} in measurable annual value across ${parts.length} levers — ${levers}. The investment powers two of Pontoon's highest-priority commercial initiatives — Pathfinder and the market intelligence practice — while creating an Adecco Group-level platform opportunity. ROI multiple and payback period will be included in the full proposal.`);
+}
+
+// ── LOCALSTORAGE PERSISTENCE ──
+const STORE_KEY = 'tn_pontoon_internal_v1';
+
+const TEXT_IDS = ['pf-risk','mi-qual','group-entities','risk-competitive','risk-operational','risk-reputational'];
+const NUMBER_IDS = ['rc-people','rc-hours','rc-rate','rc-pct','rc-cards','sow-spend','sow-pct','sow-negs','sow-hrs','sow-rate','pf-clients','pf-rev','mi-churn','mi-rev','mi-pct','mi-direct','group-count','group-val','api-rc-titles','api-rc-freq','api-pf-daily','api-pf-days','api-sow-monthly','api-sched-monthly','ui-seats','ui-freq','investment-input'];
+const SELECT_IDS = ['ui-essential'];
+const CHECK_IDS = ['ui-market','ui-sow','ui-rc','ui-exec'];
+
+function saveState() {
+  const state = {};
+  NUMBER_IDS.forEach(id => { const el = document.getElementById(id); if (el) state[id] = el.value; });
+  TEXT_IDS.forEach(id => { const el = document.getElementById(id); if (el) state[id] = el.value; });
+  SELECT_IDS.forEach(id => { const el = document.getElementById(id); if (el) state[id] = el.value; });
+  CHECK_IDS.forEach(id => { const el = document.getElementById(id); if (el) state[id] = el.checked; });
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    NUMBER_IDS.forEach(id => { const el = document.getElementById(id); if (el && state[id] !== undefined) el.value = state[id]; });
+    TEXT_IDS.forEach(id => { const el = document.getElementById(id); if (el && state[id] !== undefined) el.value = state[id]; });
+    SELECT_IDS.forEach(id => { const el = document.getElementById(id); if (el && state[id] !== undefined) el.value = state[id]; });
+    CHECK_IDS.forEach(id => { const el = document.getElementById(id); if (el && state[id] !== undefined) el.checked = state[id]; });
+  } catch(e) {}
+}
+
+function clearState() {
+  if (confirm('Clear all saved data and start fresh?')) {
+    try { localStorage.removeItem(STORE_KEY); } catch(e) {}
+    NUMBER_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    TEXT_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    SELECT_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    CHECK_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.checked = false; });
+    calc();
+  }
+}
+
+document.querySelectorAll('input, select, textarea').forEach(el => {
+  el.addEventListener('input', saveState);
+  el.addEventListener('change', saveState);
+});
+
+// Safety net: fire calc after full DOM load in case localStorage restore beat element render
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() { loadState(); calc(); });
+} else {
+  loadState(); calc();
+}
+</script>
+
+<div style="position:fixed;bottom:20px;right:24px;display:flex;gap:10px;align-items:center;z-index:100;">
+  <div id="save-indicator" style="font-size:11px;color:#9898B0;font-family:'Inter',sans-serif;opacity:0;transition:opacity .4s;">✓ Saved</div>
+  <button onclick="clearState()" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:#9898B0;background:#fff;border:1px solid #E2E0EE;border-radius:8px;padding:8px 14px;cursor:pointer;">Reset</button>
+</div>
+<script>
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', () => {
+      const ind = document.getElementById('save-indicator');
+      ind.style.opacity = '1';
+      setTimeout(() => { ind.style.opacity = '0'; }, 1500);
+    });
+  });
+</script>
+</body>
+</html>
