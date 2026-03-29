@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentNeuron × Pontoon — Data Gathering Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --tn-purple: #4A1FA8;
+  --tn-purple-mid: #6B3CC7;
+  --tn-purple-light: #EDE8FB;
+  --tn-purple-xlight: #F7F5FE;
+  --tn-teal: #00B4A6;
+  --tn-teal-light: #E0F7F5;
+  --tn-teal-dark: #007A70;
+  --ink: #0F0F1A;
+  --ink-2: #2A2A42;
+  --ink-3: #5E5E7A;
+  --ink-4: #9898B0;
+  --surface: #FAFAFA;
+  --surface-2: #F3F3F8;
+  --border: #E2E0EE;
+  --white: #FFFFFF;
+  --amber: #E8900A;
+  --amber-light: #FEF6E4;
+}
+
+html { font-size: 15px; }
+body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--ink); min-height: 100vh; }
+
+/* ── HEADER ── */
+.header { background: var(--tn-purple); position: relative; overflow: hidden; }
+.header-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(0,180,166,.18) 0%, transparent 60%),
+              radial-gradient(ellipse at 10% 80%, rgba(107,60,199,.4) 0%, transparent 50%);
+}
+.header-inner {
+  position: relative; z-index: 2;
+  padding: 32px 56px 28px;
+  display: flex; justify-content: space-between; align-items: center; gap: 32px;
+}
+.logo-lockup { display: flex; align-items: center; gap: 14px; }
+.logo-mark { width: 36px; height: 36px; background: var(--tn-teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.logo-mark svg { width: 20px; height: 20px; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: #fff; }
+.logo-text span { color: var(--tn-teal); }
+.header-center { flex: 1; text-align: center; }
+.header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 6px; }
+.header-title { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; color: #fff; letter-spacing: -.02em; }
+.header-title em { color: var(--tn-teal); font-style: normal; }
+.header-badge {
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px; padding: 10px 18px; text-align: center;
+}
+.badge-label { font-size: 10px; color: rgba(255,255,255,.45); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+.badge-val { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; }
+
+/* ── LAYOUT ── */
+.body-wrap { max-width: 960px; margin: 0 auto; padding: 40px 40px 80px; }
+
+/* ── INTRO ── */
+.intro {
+  background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+  padding: 24px 28px; margin-bottom: 32px;
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+}
+.intro-text { font-size: 13.5px; color: var(--ink-2); line-height: 1.7; }
+.intro-text strong { color: var(--tn-purple); }
+.intro-who {
+  background: var(--tn-purple-xlight); border: 1px solid var(--tn-purple-light);
+  border-radius: 10px; padding: 16px 20px; min-width: 200px;
+}
+.who-label { font-size: 10px; color: var(--tn-purple-mid); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
+.who-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.who-row:last-child { margin-bottom: 0; }
+.who-dot { width: 28px; height: 28px; border-radius: 50%; background: var(--tn-purple); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.who-dot.teal { background: var(--tn-teal-dark); }
+.who-dot.mid { background: var(--tn-purple-mid); }
+.who-name { font-size: 12px; font-weight: 500; color: var(--ink-2); }
+.who-role { font-size: 11px; color: var(--ink-4); }
+
+/* ── SECTION ── */
+.section { margin-bottom: 24px; }
+.section-label {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+}
+.section-num {
+  width: 28px; height: 28px; background: var(--tn-purple); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.section-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--ink); }
+.section-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+
+/* ── DATA ROW ── */
+.data-row {
+  display: grid; grid-template-columns: 32px 1fr 200px 120px;
+  gap: 0; border-bottom: 1px solid var(--border);
+  align-items: stretch;
+}
+.data-row:last-child { border-bottom: none; }
+.data-row.header-row { background: var(--tn-purple-xlight); }
+
+.cell {
+  padding: 13px 16px;
+  display: flex; align-items: center;
+  border-right: 1px solid var(--border);
+  font-size: 12.5px;
+}
+.cell:last-child { border-right: none; }
+.cell.num { justify-content: center; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: var(--tn-purple-mid); }
+.cell.data-point { flex-direction: column; align-items: flex-start; gap: 3px; }
+.data-name { font-weight: 500; color: var(--ink); font-size: 13px; line-height: 1.3; }
+.data-desc { font-size: 11.5px; color: var(--ink-3); line-height: 1.4; }
+.cell.source { font-size: 11.5px; color: var(--ink-3); line-height: 1.45; }
+.cell.owner { justify-content: center; }
+
+/* Owner badges */
+.owner-badge {
+  font-size: 10px; font-weight: 600; letter-spacing: .04em;
+  padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+}
+.owner-laura { background: var(--tn-purple-light); color: var(--tn-purple); }
+.owner-david { background: var(--tn-teal-light); color: var(--tn-teal-dark); }
+.owner-christian { background: #FEF3C7; color: #92400E; }
+.owner-finance { background: #F0FDF4; color: #166534; }
+.owner-team { background: var(--surface-2); color: var(--ink-3); border: 1px solid var(--border); }
+
+/* Header cells */
+.cell.hdr { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--tn-purple-mid); }
+
+/* Exact vs estimate badge */
+.precision {
+  font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 3px;
+  letter-spacing: .04em; margin-top: 4px; display: inline-block;
+}
+.exact { background: #FEF2F2; color: #991B1B; }
+.estimate { background: var(--amber-light); color: var(--amber); }
+.range { background: #F0FDF4; color: #166534; }
+
+/* ── CALLOUTS ── */
+.callout {
+  border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 10px;
+  font-size: 13px; line-height: 1.6; color: var(--ink-2);
+}
+.callout.purple { background: var(--tn-purple-xlight); border-left: 4px solid var(--tn-purple); }
+.callout.teal { background: var(--tn-teal-light); border-left: 4px solid var(--tn-teal); }
+.callout.amber { background: var(--amber-light); border-left: 4px solid var(--amber); }
+.callout strong { font-weight: 600; }
+.callout.purple strong { color: var(--tn-purple); }
+.callout.teal strong { color: var(--tn-teal-dark); }
+.callout.amber strong { color: var(--amber); }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 28px;
+}
+.legend-group { display: flex; align-items: center; gap: 8px; }
+.legend-label { font-size: 11px; color: var(--ink-3); }
+.legend-title { font-size: 11px; font-weight: 600; color: var(--ink-3); margin-right: 4px; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--tn-purple); border-radius: 12px; padding: 22px 28px;
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+  margin-top: 32px;
+}
+.footer-text { font-size: 13px; color: rgba(255,255,255,.7); line-height: 1.6; }
+.footer-text strong { color: #fff; }
+.footer-note { font-size: 11px; color: rgba(255,255,255,.35); text-align: right; min-width: 180px; line-height: 1.5; }
+
+@media(max-width:760px){
+  .data-row { grid-template-columns: 28px 1fr; }
+  .cell.source, .cell.owner { display: none; }
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .body-wrap { padding: 24px 20px 60px; }
+  .intro { grid-template-columns: 1fr; }
+  .legend { flex-direction: column; gap: 10px; }
+  .footer { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-inner">
+    <div class="logo-lockup">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/>
+          <path d="M6 10h8M10 6v8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">Talent<span>Neuron</span></div>
+    </div>
+    <div class="header-center">
+      <div class="header-eyebrow">Pontoon Solutions × TalentNeuron</div>
+      <div class="header-title">Data <em>Gathering Guide</em></div>
+    </div>
+    <div class="header-badge">
+      <div class="badge-label">Use before</div>
+      <div class="badge-val">Value Assessment</div>
+    </div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-text">
+      Before completing the Value Assessment worksheet, your team will need to gather specific data points from across the business. This guide tells you <strong>exactly what to collect, where to find it, and who owns it</strong>. Estimates and ranges are fine where exact figures aren't available — the goal is a defensible value story, not a perfect spreadsheet.
+    </div>
+    <div class="intro-who">
+      <div class="who-label">Who to involve</div>
+      <div class="who-row">
+        <div class="who-dot">LB</div>
+        <div><div class="who-name">Laura Brady</div><div class="who-role">Process + strategic context</div></div>
+      </div>
+      <div class="who-row">
+        <div class="who-dot teal">DO</div>
+        <div><div class="who-name">David Orme</div><div class="who-role">SOW + procurement data</div></div>
+      </div>
+      <div class="who-row">
+        <div class="who-dot mid">CL</div>
+        <div><div class="who-name">Christian Lortz</div><div class="who-role">Technical + API consumption</div></div>
+      </div>
+      <div class="who-row">
+        <div class="who-dot" style="background:var(--ink-3);">F</div>
+        <div><div class="who-name">Finance / FP&amp;A</div><div class="who-role">Cost and revenue figures</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-group"><span class="legend-title">Data owner:</span></div>
+    <div class="legend-group"><span class="owner-badge owner-laura">Laura</span><span class="legend-label">Intelligence / ops</span></div>
+    <div class="legend-group"><span class="owner-badge owner-david">David</span><span class="legend-label">SOW / procurement</span></div>
+    <div class="legend-group"><span class="owner-badge owner-christian">Christian</span><span class="legend-label">Technical / architecture</span></div>
+    <div class="legend-group"><span class="owner-badge owner-finance">Finance</span><span class="legend-label">FP&amp;A / cost data</span></div>
+    <div class="legend-group"><span class="owner-badge owner-team">Team</span><span class="legend-label">Collaborative estimate</span></div>
+    <div style="width:1px;background:var(--border);margin:0 4px;"></div>
+    <div class="legend-group"><span class="precision exact">Exact</span><span class="legend-label">Precise figure needed</span></div>
+    <div class="legend-group"><span class="precision estimate">Estimate</span><span class="legend-label">Best estimate acceptable</span></div>
+    <div class="legend-group"><span class="precision range">Range</span><span class="legend-label">Order of magnitude fine</span></div>
+  </div>
+
+  <!-- ═══════ SECTION 1 ═══════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">1</div>
+      <div class="section-name">Rate Card &amp; Manual Process</div>
+    </div>
+
+    <div class="callout teal" style="margin-bottom:12px;">
+      <strong>Where to look:</strong> HR or Finance for FTE costs. Team leads for time estimates. The rate card team for volume and process details.
+    </div>
+
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">1</div>
+        <div class="cell data-point">
+          <div class="data-name">Number of people involved in the annual rate card refresh</div>
+          <div class="data-desc">Include everyone who touches the process — analysts, managers who review, anyone who reconciles sources</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Rate card team lead / Laura. Count headcount involved, not just primary owners.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">2</div>
+        <div class="cell data-point">
+          <div class="data-name">Hours each person spends on rate card work per year</div>
+          <div class="data-desc">Include research, comparison, reconciliation, review cycles, and internal sign-off time</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Ask each team member directly. A time log or a direct estimate from the team lead is fine.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">3</div>
+        <div class="cell data-point">
+          <div class="data-name">Fully-loaded hourly cost of rate card team members</div>
+          <div class="data-desc">Salary + benefits + overhead. $60–$100/hr is a typical range for this function.</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">HR or Finance. If unavailable, use annual salary ÷ 2,080 hours × 1.3 (benefits multiplier).</div>
+        <div class="cell owner"><span class="owner-badge owner-finance">Finance</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">4</div>
+        <div class="cell data-point">
+          <div class="data-name">Number of rate cards refreshed per year</div>
+          <div class="data-desc">Total count across all client programs and geographies</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Rate card inventory / program management records. Laura mentioned 50–60 as a starting estimate.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">5</div>
+        <div class="cell data-point">
+          <div class="data-name">Realistic % of rate card effort that automation would eliminate</div>
+          <div class="data-desc">Consider: what steps require human judgment vs. data lookup? Typically 50–75% is defensible.</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Team estimate. Think through each step in the current process and identify which ones disappear with an automated data feed.</div>
+        <div class="cell owner"><span class="owner-badge owner-team">Team</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION 2 ═══════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">2</div>
+      <div class="section-name">SOW Negotiation &amp; Cost Avoidance</div>
+    </div>
+
+    <div class="callout amber" style="margin-bottom:12px;">
+      <strong>The most important number in this section</strong> is total managed SOW spend — it's the denominator that makes the ROI case. Even a rough order of magnitude ($100M vs. $500M vs. $1B+) is enough to build the argument. If the exact figure is sensitive, it stays internal.
+    </div>
+
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">6</div>
+        <div class="cell data-point">
+          <div class="data-name">Total annual value of SOW contracts managed or advised on</div>
+          <div class="data-desc">The aggregate dollar value of all SOW engagements Pontoon manages, advises on, or negotiates annually — across all geographies</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">Finance / FP&amp;A or David Orme. If exact figure is unavailable, an order-of-magnitude range is sufficient for this exercise.</div>
+        <div class="cell owner"><span class="owner-badge owner-david">David</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">7</div>
+        <div class="cell data-point">
+          <div class="data-name">Estimated rate accuracy improvement from data-driven pricing</div>
+          <div class="data-desc">What % improvement in pricing outcomes is realistic when negotiating with current market rate data vs. manual benchmarking? Even 0.5–1.5% is highly conservative.</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">David Orme's judgment based on negotiation experience. Compare: "how often do we leave value on the table because we don't have current data?"</div>
+        <div class="cell owner"><span class="owner-badge owner-david">David</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">8</div>
+        <div class="cell data-point">
+          <div class="data-name">Number of SOW negotiations conducted per year</div>
+          <div class="data-desc">All negotiations where Pontoon advises on or sets pricing — include both new contracts and renewals</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">David Orme / procurement records. Include renewals, amendments, and new engagements.</div>
+        <div class="cell owner"><span class="owner-badge owner-david">David</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">9</div>
+        <div class="cell data-point">
+          <div class="data-name">Average hours spent per SOW negotiation currently</div>
+          <div class="data-desc">Research, benchmarking, internal review, and negotiation time — the portion that current data access would reduce</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">David Orme / team estimate. Focus on the research and benchmarking hours specifically — not total deal time.</div>
+        <div class="cell owner"><span class="owner-badge owner-david">David</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">10</div>
+        <div class="cell data-point">
+          <div class="data-name">Fully-loaded hourly cost of the negotiation / procurement team</div>
+          <div class="data-desc">Same methodology as #3 — annual salary + benefits ÷ working hours</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">Finance. Senior procurement/SOW professionals typically run $90–$150/hr fully loaded.</div>
+        <div class="cell owner"><span class="owner-badge owner-finance">Finance</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION 3 ═══════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">3</div>
+      <div class="section-name">Pathfinder — Revenue Enablement</div>
+    </div>
+
+    <div class="callout purple" style="margin-bottom:12px;">
+      <strong>Context:</strong> Pathfinder is a proprietary tool Pontoon is building. This section quantifies what it's worth commercially — not just technically. Even conservative estimates here often produce the largest single ROI lever.
+    </div>
+
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">11</div>
+        <div class="cell data-point">
+          <div class="data-name">Number of new clients or retained accounts Pathfinder is expected to enable</div>
+          <div class="data-desc">Conservative estimate: how many accounts could Pathfinder differentiate Pontoon in, either winning new business or preventing churn?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Laura + leadership. What is the commercial target for Pathfinder? Even "1–3 accounts in year one" is a starting point.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">12</div>
+        <div class="cell data-point">
+          <div class="data-name">Average annual revenue per Pontoon client account</div>
+          <div class="data-desc">Use a representative figure for the type of accounts Pathfinder would target — mid-market, enterprise, or global</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">Finance / revenue data. If accounts vary significantly, use a conservative mid-point.</div>
+        <div class="cell owner"><span class="owner-badge owner-finance">Finance</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">13</div>
+        <div class="cell data-point">
+          <div class="data-name">Description of the risk if Pathfinder's rate data is inaccurate</div>
+          <div class="data-desc">What happens to the client relationship if Pathfinder recommends the wrong staffing model or gives an inaccurate cost estimate?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">David Orme + Laura. This is a qualitative input — capture it in plain language. It becomes the risk statement in the proposal.</div>
+        <div class="cell owner"><span class="owner-badge owner-team">Team</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION 4 ═══════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">4</div>
+      <div class="section-name">Market Intelligence Practice</div>
+    </div>
+
+    <div class="callout teal" style="margin-bottom:12px;">
+      <strong>Context:</strong> This section values Pontoon's market intelligence publishing initiative — not just an internal analyst tool. Think about what it means commercially to be the MSP that publishes credible, data-backed market intelligence for clients.
+    </div>
+
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">14</div>
+        <div class="cell data-point">
+          <div class="data-name">Number of client accounts at meaningful churn risk annually</div>
+          <div class="data-desc">Accounts where competitive differentiation — like market intelligence — could influence the retention decision</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Laura / account management. Which accounts are in active re-evaluation or competitive review in any given year?</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">15</div>
+        <div class="cell data-point">
+          <div class="data-name">Average annual revenue per at-risk client account</div>
+          <div class="data-desc">The revenue at stake for each account that could be influenced by a market intelligence capability</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">Finance. Use average revenue per enterprise account if individual account data isn't available.</div>
+        <div class="cell owner"><span class="owner-badge owner-finance">Finance</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">16</div>
+        <div class="cell data-point">
+          <div class="data-name">Estimated % reduction in churn risk from a market intel capability</div>
+          <div class="data-desc">If Pontoon could publish credible market data and include it in client reviews, how much would that reduce the likelihood of those accounts churning?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Laura + leadership judgment. Even 10–20% is a defensible and conservative estimate for a differentiated capability in a competitive review.</div>
+        <div class="cell owner"><span class="owner-badge owner-team">Team</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">17</div>
+        <div class="cell data-point">
+          <div class="data-name">Whether market intelligence will be bundled or billed separately to clients</div>
+          <div class="data-desc">If it becomes a billable service or premium tier, there is a direct revenue line. If bundled, the value shows up in retention and win rates.</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Laura / leadership. This is a commercial model decision — flag if still undecided, and estimate both scenarios.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION 5 ═══════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">5</div>
+      <div class="section-name">Adecco Group Expansion</div>
+    </div>
+
+    <div class="callout purple" style="margin-bottom:12px;">
+      <strong>Why this matters:</strong> This section reframes the investment from a Pontoon vendor decision to a group-level platform decision. Even a rough estimate of group-level potential significantly changes the ROI picture — and the conversation leadership has about the price point.
+    </div>
+
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">18</div>
+        <div class="cell data-point">
+          <div class="data-name">Which Adecco Group entities could benefit from labor market intelligence data</div>
+          <div class="data-desc">Akkodis (tech staffing), LHH (career transition + learning), Adecco staffing brands, Pontoon RPO — which ones have a use case?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Laura + group leadership awareness. Which brands operate in talent markets where supply/demand and rate data would be valuable?</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">19</div>
+        <div class="cell data-point">
+          <div class="data-name">Number of group entities that are realistically in expansion scope</div>
+          <div class="data-desc">Be conservative — only count entities where there is a genuine near-term use case, not theoretical future ones</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Laura / group leadership. A phone call or email to a counterpart at Akkodis or LHH can validate this quickly.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">20</div>
+        <div class="cell data-point">
+          <div class="data-name">Estimated annual value per group entity at a similar scope to Pontoon</div>
+          <div class="data-desc">This doesn't need to be precise — it's a multiplier to show leadership the group-level value trajectory</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">Use the Pontoon engagement as the baseline. Larger entities (Akkodis, LHH) may be higher; smaller market operations may be lower.</div>
+        <div class="cell owner"><span class="owner-badge owner-team">Team</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION 6 ═══════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">6</div>
+      <div class="section-name">Cost of Inaction</div>
+    </div>
+
+    <div class="callout amber" style="margin-bottom:12px;">
+      <strong>This section is qualitative</strong> — no numbers needed. But it is often the most powerful part of the leadership conversation. Capturing the specific risks in plain language, from the people who own those risks, turns the proposal into a risk management decision rather than a cost decision.
+    </div>
+
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">21</div>
+        <div class="cell data-point">
+          <div class="data-name">Competitive risk statement</div>
+          <div class="data-desc">What do competitors who publish market data win that Pontoon currently doesn't? What accounts has Pontoon lost — or not won — because it couldn't show data?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Laura + account management. Ask: "Has there been a competitive situation where market intelligence capability was a factor in the outcome?"</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">22</div>
+        <div class="cell data-point">
+          <div class="data-name">Operational risk statement</div>
+          <div class="data-desc">What breaks in the current manual process if Pontoon adds 20% more clients or rate card volume? Is the team already at capacity?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Laura + rate card team. "What happens to this process if our client count grows by 20%?" is the right question to ask.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">23</div>
+        <div class="cell data-point">
+          <div class="data-name">Reputational / client risk statement</div>
+          <div class="data-desc">What is the cost to Pontoon if Pathfinder gives an inaccurate recommendation and a client acts on it? What does a wrong SOW pricing recommendation cost in a client relationship?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">David Orme. He owns the SOW risk and can articulate the client relationship consequence of pricing errors in plain language.</div>
+        <div class="cell owner"><span class="owner-badge owner-david">David</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SECTION 7 ═══════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num" style="background:var(--tn-teal-dark);">↗</div>
+      <div class="section-name">Usage Profile — API &amp; UI</div>
+    </div>
+
+    <div class="callout teal" style="margin-bottom:12px;">
+      <strong>Who to ask:</strong> Christian owns the technical architecture. He knows how Pathfinder queries data, what the expected volume looks like, and whether MCP or API is the right integration path. Laura owns the UI access question.
+    </div>
+
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">24</div>
+        <div class="cell data-point">
+          <div class="data-name">Total unique titles across all rate cards</div>
+          <div class="data-desc">Not the number of rate cards — the number of distinct job titles across all of them combined</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Rate card inventory. Export all titles across all programs and deduplicate.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">25</div>
+        <div class="cell data-point">
+          <div class="data-name">How often rate cards are refreshed per year</div>
+          <div class="data-desc">Annual, semi-annual, or quarterly? Per client or universal? This determines the API call frequency for use case 1.</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Laura / rate card process documentation.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">26</div>
+        <div class="cell data-point">
+          <div class="data-name">How Pathfinder will query TalentNeuron — real-time per request or batched</div>
+          <div class="data-desc">Real-time means a query fires every time a hiring manager uses Pathfinder. Batched means data is pulled on a schedule and cached. These have very different consumption profiles.</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Christian. This is an architecture decision that may not be finalized — but the direction will determine volume.</div>
+        <div class="cell owner"><span class="owner-badge owner-christian">Christian</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">27</div>
+        <div class="cell data-point">
+          <div class="data-name">Expected number of Pathfinder queries per day</div>
+          <div class="data-desc">How many hiring managers or requests does Pathfinder expect to process daily once live?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Christian + Laura. Base it on the number of active programs, hiring managers with access, or expected transaction volume.</div>
+        <div class="cell owner"><span class="owner-badge owner-christian">Christian</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">28</div>
+        <div class="cell data-point">
+          <div class="data-name">Expected ad hoc API query volume for SOW and market intel</div>
+          <div class="data-desc">How often will analysts or the SOW team query the API outside of Pathfinder? Estimate monthly volume.</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">David Orme (SOW queries) + Laura (market intel queries). Think through the current manual frequency and translate to automated query volume.</div>
+        <div class="cell owner"><span class="owner-badge owner-team">Team</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">29</div>
+        <div class="cell data-point">
+          <div class="data-name">Which teams need UI access to the LMI platform</div>
+          <div class="data-desc">Market intel publishing, SOW research, rate card team, leadership reporting — which functions would actively use the interface?</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Laura. Walk through each use case and identify who would use the UI vs. who only consumes API output through Pathfinder or other tools.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">30</div>
+        <div class="cell data-point">
+          <div class="data-name">Total estimated UI seat count and access frequency</div>
+          <div class="data-desc">How many named users would need UI access, and how often would they use it? Daily, a few times per week, or on-demand?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Laura + team leads. This determines whether UI is in the initial scope or phase 2.</div>
+        <div class="cell owner"><span class="owner-badge owner-laura">Laura</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-text">
+      Once your team has gathered this data, complete the <strong>Value Assessment worksheet</strong> together. Estimates and ranges are fine — a defensible value story doesn't require precision on every line. The completed worksheet will be incorporated into the formal proposal from TalentNeuron.
+    </div>
+    <div class="footer-note">TalentNeuron × Pontoon Solutions<br>Confidential — for internal use</div>
+  </div>
+
+</div>
+</body>
+</html>
