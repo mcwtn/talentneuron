@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentNeuron × Pontoon — Value Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --tn-purple: #4A1FA8;
+  --tn-purple-mid: #6B3CC7;
+  --tn-purple-light: #EDE8FB;
+  --tn-purple-xlight: #F7F5FE;
+  --tn-teal: #00B4A6;
+  --tn-teal-light: #E0F7F5;
+  --tn-teal-dark: #007A70;
+  --ink: #0F0F1A;
+  --ink-2: #2A2A42;
+  --ink-3: #5E5E7A;
+  --ink-4: #9898B0;
+  --surface: #FAFAFA;
+  --surface-2: #F3F3F8;
+  --border: #E2E0EE;
+  --white: #FFFFFF;
+  --amber: #E8900A;
+  --amber-light: #FEF6E4;
+  --green: #0A7055;
+  --green-light: #E4F5F0;
+}
+
+html { font-size: 15px; scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--ink); min-height: 100vh; }
+
+/* ── HEADER ── */
+.header { background: var(--tn-purple); position: relative; overflow: hidden; }
+.header-inner {
+  position: relative; z-index: 2;
+  padding: 36px 56px 32px;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 32px;
+}
+.header-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(0,180,166,.18) 0%, transparent 60%),
+              radial-gradient(ellipse at 10% 80%, rgba(107,60,199,.4) 0%, transparent 50%);
+}
+.logo-lockup { display: flex; align-items: center; gap: 14px; }
+.logo-mark { width: 36px; height: 36px; background: var(--tn-teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.logo-mark svg { width: 20px; height: 20px; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -.01em; }
+.logo-text span { color: var(--tn-teal); }
+.header-center { flex: 1; text-align: center; }
+.header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+.header-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; color: #fff; line-height: 1.2; letter-spacing: -.02em; }
+.header-title em { color: var(--tn-teal); font-style: normal; }
+.header-right { text-align: right; flex-shrink: 0; }
+.total-label { font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.total-value { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 700; color: var(--tn-teal); letter-spacing: -.02em; line-height: 1; }
+.total-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 4px; }
+.progress-strip { height: 4px; background: rgba(255,255,255,.1); }
+.progress-fill-strip { height: 100%; background: linear-gradient(90deg, var(--tn-teal), #5CF0E0); transition: width .5s ease; border-radius: 0 2px 2px 0; }
+
+/* ── LAYOUT ── */
+.body-wrap { max-width: 960px; margin: 0 auto; padding: 40px 40px 80px; }
+
+/* ── INTRO ── */
+.intro-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+  padding: 28px 32px; margin-bottom: 32px;
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+}
+.intro-text { font-size: 14px; color: var(--ink-2); line-height: 1.7; }
+.intro-text strong { color: var(--tn-purple); }
+.intro-chips { display: flex; flex-direction: column; gap: 10px; min-width: 200px; }
+.intro-chip {
+  background: var(--tn-purple-xlight); border: 1px solid var(--tn-purple-light);
+  border-radius: 10px; padding: 14px 18px; text-align: center;
+}
+.chip-label { font-size: 10px; color: var(--tn-purple-mid); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 5px; font-weight: 500; }
+.chip-val { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--tn-purple); line-height: 1.3; }
+
+/* ── SECTION ── */
+.section { margin-bottom: 28px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.section-num {
+  width: 32px; height: 32px; background: var(--tn-purple); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.section-title-wrap { flex: 1; }
+.section-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.section-subtitle { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
+.section-roi { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--tn-teal-dark); }
+.section-roi-label { font-size: 11px; color: var(--ink-4); text-align: right; }
+.section-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+
+/* ── QUESTION BLOCK ── */
+.q-block {
+  padding: 22px 28px; border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start;
+}
+.q-block:last-child { border-bottom: none; }
+.q-block.full-width { grid-template-columns: 1fr; }
+.q-title { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.45; margin-bottom: 6px; }
+.q-desc { font-size: 13px; color: var(--ink-3); line-height: 1.6; }
+
+input[type="number"], input[type="text"], select, textarea {
+  width: 100%; background: var(--surface-2); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 10px 14px; font-size: 13.5px;
+  font-family: 'Inter', sans-serif; color: var(--ink);
+  transition: border-color .15s, box-shadow .15s; outline: none;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--tn-purple-mid); box-shadow: 0 0 0 3px rgba(74,31,168,.08); background: var(--white);
+}
+textarea { resize: vertical; min-height: 72px; }
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.input-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+.field-label { font-size: 11px; color: var(--ink-4); font-weight: 500; margin-bottom: 6px; letter-spacing: .04em; }
+
+.calc-result {
+  background: var(--tn-purple-xlight); border: 1px solid var(--tn-purple-light);
+  border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.calc-result-label { font-size: 12px; color: var(--tn-purple-mid); font-weight: 500; }
+.calc-result-value { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--tn-purple); }
+
+.teal-callout {
+  background: var(--tn-teal-light); border-left: 4px solid var(--tn-teal);
+  border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 0 28px 22px;
+  font-size: 13px; color: var(--ink-2); line-height: 1.6;
+}
+.teal-callout strong { color: var(--tn-teal-dark); }
+
+/* ── SUMMARY ── */
+.summary-section {
+  background: var(--tn-purple); border-radius: 16px; padding: 36px 40px;
+  margin-top: 36px; position: relative; overflow: hidden;
+}
+.summary-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 90% 20%, rgba(0,180,166,.2) 0%, transparent 50%); }
+.summary-inner { position: relative; z-index: 2; }
+.summary-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 24px; letter-spacing: -.01em; }
+.summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 20px; }
+.summary-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 16px; }
+.sc-label { font-size: 10px; color: rgba(255,255,255,.5); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.sc-val { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -.01em; line-height: 1; }
+.sc-val.teal { color: var(--tn-teal); }
+.roi-bar-wrap { margin-bottom: 24px; }
+.roi-bar-label { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 8px; }
+.roi-bar-track { height: 8px; background: rgba(255,255,255,.12); border-radius: 4px; overflow: hidden; }
+.roi-bar-fill { height: 100%; background: linear-gradient(90deg, var(--tn-teal), #5CF0E0); border-radius: 4px; transition: width .6s ease; min-width: 2px; }
+.narrative-box { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 18px 22px; }
+.narrative-label { font-size: 10px; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
+.narrative-text { font-size: 13.5px; color: rgba(255,255,255,.85); line-height: 1.7; }
+
+/* ── USAGE SECTION ── */
+.usage-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.usage-block { padding: 22px 28px; border-bottom: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.usage-block:last-child { border-bottom: none; }
+
+@media(max-width:760px){
+  .q-block, .usage-block { grid-template-columns: 1fr; }
+  .input-row, .input-row.triple { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .body-wrap { padding: 24px 20px 60px; }
+  .intro-card { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-inner">
+    <div class="logo-lockup">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/>
+          <path d="M6 10h8M10 6v8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">Talent<span>Neuron</span></div>
+    </div>
+    <div class="header-center">
+      <div class="header-eyebrow">Pontoon Solutions × TalentNeuron</div>
+      <div class="header-title">Value <em>Assessment</em></div>
+    </div>
+    <div class="header-right">
+      <div class="total-label">Total Annual Value Identified</div>
+      <div class="total-value" id="grand-total">$0</div>
+      <div class="total-sub">ROI analysis · complete together</div>
+    </div>
+  </div>
+  <div class="progress-strip">
+    <div class="progress-fill-strip" id="progress-strip" style="width:0%"></div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <!-- INTRO -->
+  <div class="intro-card">
+    <div class="intro-text">
+      This worksheet helps quantify the business value of a market intelligence partnership with TalentNeuron across Pontoon's four primary use cases. Work through each section as a team — use estimates and ranges where exact figures aren't available. The output is a <strong>board-ready value summary</strong> that will be included in the formal proposal.
+    </div>
+    <div class="intro-chips">
+      <div class="intro-chip">
+        <div class="chip-label">Use Cases</div>
+        <div class="chip-val">Rate Cards · Pathfinder<br>SOW · Market Intel</div>
+      </div>
+      <div class="intro-chip">
+        <div class="chip-label">Standard</div>
+        <div class="chip-val">Value must exceed<br>investment by 10×</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ LEVER 1: RATE CARD ═══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Rate Card &amp; Manual Process Efficiency</div>
+        <div class="section-subtitle">Quantifying the cost of the current manual rate card process</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 1 Value</div>
+        <div class="section-roi" id="l1-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">How many people are involved in the annual rate card refresh, and how many hours does each person spend on it?</div>
+          <div class="q-desc">The labor cost of a process that can be automated is one of the most straightforward ROI calculations — and one of the easiest for leadership to approve against.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">People involved</div>
+              <input type="number" id="rc-people" placeholder="e.g. 3" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Hours per person / year</div>
+              <input type="number" id="rc-hours" placeholder="e.g. 400" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="field-label">Avg fully-loaded hourly cost</div>
+          <input type="number" id="rc-rate" placeholder="e.g. 75" min="0" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Annual cost of manual process</div>
+            <div class="calc-result-value" id="rc-cost">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">How many rate cards are refreshed per year, and what percentage of that effort would automation eliminate?</div>
+          <div class="q-desc">Even a conservative estimate of 50–70% automation of the manual effort produces a meaningful efficiency return — while also improving data freshness and consistency.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">Rate cards / year</div>
+              <input type="number" id="rc-cards" placeholder="e.g. 55" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">% effort eliminated</div>
+              <input type="number" id="rc-pct" placeholder="e.g. 70" min="0" max="100" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Annual efficiency savings</div>
+            <div class="calc-result-value" id="rc-savings">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teal-callout">
+        <strong>Note:</strong> Even at 50% automation, this lever alone often recovers a significant portion of the annual investment — and the data quality improvement is an additional benefit that doesn't appear in this calculation.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ LEVER 2: SOW ═══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">SOW Negotiation &amp; Cost Avoidance</div>
+        <div class="section-subtitle">The financial impact of better upstream pricing intelligence</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 2 Value</div>
+        <div class="section-roi" id="l2-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">What is the total annual value of SOW contracts that Pontoon manages or advises on?</div>
+          <div class="q-desc">This is the key denominator. Even a 1% improvement in SOW rate accuracy against a large managed spend base typically produces a return that significantly exceeds the cost of the intelligence investment.</div>
+        </div>
+        <div>
+          <div class="field-label">Annual SOW managed / advised spend ($M)</div>
+          <input type="number" id="sow-spend" placeholder="e.g. 500" min="0" oninput="calc()" onchange="calc()">
+          <div class="field-label" style="margin-top:12px;">Estimated rate accuracy improvement (%)</div>
+          <input type="number" id="sow-pct" placeholder="e.g. 1.5" min="0" step="0.1" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Annual SOW cost avoidance</div>
+            <div class="calc-result-value" id="sow-value">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">How many SOW negotiations does Pontoon conduct per year, and how much time does each one take without current market rate data?</div>
+          <div class="q-desc">Negotiation time is a direct cost — and negotiations backed by current market data are faster, more confident, and more likely to result in defensible outcomes for Pontoon's clients.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">SOW negotiations / year</div>
+              <input type="number" id="sow-negs" placeholder="e.g. 200" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Hours saved per negotiation</div>
+              <input type="number" id="sow-hrs" placeholder="e.g. 3" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="field-label">Hourly cost of negotiation team</div>
+          <input type="number" id="sow-rate" placeholder="e.g. 100" min="0" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Negotiation time savings</div>
+            <div class="calc-result-value" id="sow-time-val">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teal-callout">
+        <strong>Key question for your team:</strong> If you had current, defensible market rate data going into every SOW negotiation, what would a 1% improvement in pricing outcomes mean at your managed spend volume? Apply that number to the field above.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ LEVER 3: PATHFINDER ═══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Pathfinder — Revenue Enablement</div>
+        <div class="section-subtitle">TalentNeuron as the intelligence layer powering a proprietary Pontoon product</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 3 Value</div>
+        <div class="section-roi" id="l3-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">What is Pathfinder expected to contribute to Pontoon's win rate or client retention once it's live?</div>
+          <div class="q-desc">Pathfinder is a proprietary tool Pontoon intends to take to market. TalentNeuron is the intelligence layer that makes it credible. The investment here is infrastructure for a revenue-generating product — not just a data subscription.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">New clients or retained accounts enabled by Pathfinder</div>
+              <input type="number" id="pf-clients" placeholder="e.g. 5" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Avg annual revenue per account ($K)</div>
+              <input type="number" id="pf-rev" placeholder="e.g. 500" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Pathfinder-attributable revenue (conservative)</div>
+            <div class="calc-result-value" id="pf-value">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">What is the cost to Pontoon if Pathfinder gives a client an inaccurate recommendation?</div>
+          <div class="q-desc">Data accuracy is not just a technical requirement — it's a client relationship and reputational consideration. The cost of a wrong recommendation in a client-facing tool should be factored into the value of getting it right.</div>
+        </div>
+        <div>
+          <div class="field-label">Describe the risk in your own words</div>
+          <textarea id="pf-risk" placeholder="e.g. 'If Pathfinder recommends SOW when it should be staff aug and the client overpays, we risk the relationship...'"></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ LEVER 4: MARKET INTEL ═══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Market Intelligence Practice — Differentiation Value</div>
+        <div class="section-subtitle">Building an external-facing intelligence capability that Pontoon publishes and takes to clients</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 4 Value</div>
+        <div class="section-roi" id="l4-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">What is the retention impact when Pontoon can offer clients credible, published market intelligence?</div>
+          <div class="q-desc">An MSP that publishes market intelligence is a strategic partner — not a vendor. The commercial difference between those two positions shows up in retention rates, expanded scope, and competitive win rates.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">Client accounts at risk of churn / year</div>
+              <input type="number" id="mi-churn" placeholder="e.g. 10" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Avg annual revenue per account ($K)</div>
+              <input type="number" id="mi-rev" placeholder="e.g. 800" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="field-label">% churn risk reduction from market intel capability</div>
+          <input type="number" id="mi-pct" placeholder="e.g. 20" min="0" max="100" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Retention value (conservative)</div>
+            <div class="calc-result-value" id="mi-value">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">Is there a commercial model where Pontoon charges clients for market intelligence reports or data-driven advisory?</div>
+          <div class="q-desc">If market intelligence becomes a billable service, the investment has a direct revenue line. Even if it remains bundled, the differentiation value shows up in win rates and account expansion.</div>
+        </div>
+        <div>
+          <div class="field-label">Potential direct revenue from market intel (annual, $K)</div>
+          <input type="number" id="mi-direct" placeholder="e.g. 0 if bundled" min="0" oninput="calc()" onchange="calc()">
+          <div class="field-label" style="margin-top:12px;">Describe the competitive differentiation in your own words</div>
+          <textarea id="mi-qual" placeholder="e.g. 'We would be the only MSP in our competitive set that can show a client real-time supply/demand data for the markets they operate in...'"></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ LEVER 5: GROUP EXPANSION ═══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Adecco Group Expansion — The Multiplier</div>
+        <div class="section-subtitle">Pontoon as the entry point; group-level expansion as the value trajectory</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 5 Value</div>
+        <div class="section-roi" id="l5-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">Which Adecco Group entities could benefit from access to TalentNeuron data, and what would the group-level value look like?</div>
+          <div class="q-desc">A group-level partnership changes the frame of this investment entirely — from a Pontoon vendor decision to a platform decision for the Adecco Group. Leadership responds differently to those two conversations.</div>
+        </div>
+        <div>
+          <div class="field-label">Which group entities are in scope?</div>
+          <textarea id="group-entities" placeholder="e.g. Akkodis (tech staffing), LHH (career transition), Adecco staffing brands, Pontoon RPO..."></textarea>
+          <div class="input-row" style="margin-top:12px;">
+            <div>
+              <div class="field-label">Entities in expansion scope</div>
+              <input type="number" id="group-count" placeholder="e.g. 3" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Est. value per entity ($K/yr)</div>
+              <input type="number" id="group-val" placeholder="e.g. 150" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Group expansion potential (annual)</div>
+            <div class="calc-result-value" id="group-value">—</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ LEVER 6: COST OF INACTION ═══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Cost of Inaction</div>
+        <div class="section-subtitle">What not solving this problem costs Pontoon over the next 12–24 months</div>
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="q-block full-width">
+        <div>
+          <div class="q-title">If this problem isn't solved in the next 12 months, what does the realistic worst-case scenario look like?</div>
+          <div class="q-desc">Leadership approves investments faster when the cost of not investing is clear. Completing this section turns the conversation from "can we afford this" to "can we afford not to."</div>
+        </div>
+      </div>
+      <div style="padding:0 28px 22px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);">Competitive risk</div>
+          <textarea id="risk-competitive" placeholder="e.g. 'Competitors who publish market data win advisory mandates we currently lose...'"></textarea>
+        </div>
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);">Operational risk</div>
+          <textarea id="risk-operational" placeholder="e.g. 'Rate card process breaks down if we add more clients — already at manual capacity...'"></textarea>
+        </div>
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);">Reputational risk</div>
+          <textarea id="risk-reputational" placeholder="e.g. 'If Pathfinder gives a wrong recommendation and a client overpays, we risk the relationship...'"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ USAGE PROFILE ═══════════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num" style="background:var(--tn-teal-dark);">↗</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Usage Profile</div>
+        <div class="section-subtitle">Scope and consumption across the four use cases — helps right-size the engagement</div>
+      </div>
+    </div>
+    <div class="usage-card">
+
+      <div class="usage-block">
+        <div>
+          <div class="q-title">API consumption by use case</div>
+          <div class="q-desc">Understanding how each use case consumes data helps ensure the scope of the engagement is right for how you'll actually use it.</div>
+        </div>
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);margin-bottom:10px;">Rate Card Automation</div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">Unique titles across all rate cards</div>
+              <input type="number" id="api-rc-titles" placeholder="e.g. 500" min="0">
+            </div>
+            <div>
+              <div class="field-label">Refresh frequency (times/year)</div>
+              <input type="number" id="api-rc-freq" placeholder="e.g. 2" min="0">
+            </div>
+          </div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);margin-top:14px;margin-bottom:10px;">Pathfinder</div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">Queries per day</div>
+              <input type="number" id="api-pf-daily" placeholder="e.g. 50" min="0">
+            </div>
+            <div>
+              <div class="field-label">Real-time or batched?</div>
+              <select id="api-pf-mode">
+                <option value="">— Select —</option>
+                <option value="realtime">Real-time per request</option>
+                <option value="batched">Batched refresh cycles</option>
+              </select>
+            </div>
+          </div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);margin-top:14px;margin-bottom:10px;">SOW &amp; Market Intel</div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">Ad hoc queries / month</div>
+              <input type="number" id="api-sow-monthly" placeholder="e.g. 200" min="0">
+            </div>
+            <div>
+              <div class="field-label">Scheduled pulls / month</div>
+              <input type="number" id="api-sched-monthly" placeholder="e.g. 50" min="0">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="usage-block">
+        <div>
+          <div class="q-title">LMI platform UI access</div>
+          <div class="q-desc">The UI is used for exploratory research, market signal analysis, and ad hoc work outside of Pathfinder. Understanding who needs it helps determine whether it belongs in the initial scope or a later phase.</div>
+        </div>
+        <div>
+          <div class="field-label">Who would use the UI?</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;">
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:9px 12px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;">
+              <input type="checkbox" id="ui-market" style="width:auto;background:none;border:none;box-shadow:none;padding:0;flex-shrink:0;">
+              Market intel / publishing
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:9px 12px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;">
+              <input type="checkbox" id="ui-sow" style="width:auto;background:none;border:none;box-shadow:none;padding:0;flex-shrink:0;">
+              SOW / procurement
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:9px 12px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;">
+              <input type="checkbox" id="ui-rc" style="width:auto;background:none;border:none;box-shadow:none;padding:0;flex-shrink:0;">
+              Rate card / pricing
+            </label>
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;padding:9px 12px;background:var(--surface-2);border:1.5px solid var(--border);border-radius:8px;">
+              <input type="checkbox" id="ui-exec" style="width:auto;background:none;border:none;box-shadow:none;padding:0;flex-shrink:0;">
+              Leadership / reporting
+            </label>
+          </div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">Estimated seats needed</div>
+              <input type="number" id="ui-seats" placeholder="e.g. 8" min="0">
+            </div>
+            <div>
+              <div class="field-label">Avg days / week accessed</div>
+              <input type="number" id="ui-freq" placeholder="e.g. 3" min="0" max="7">
+            </div>
+          </div>
+          <div style="margin-top:12px;">
+            <div class="field-label">UI in initial scope or phase 2?</div>
+            <select id="ui-essential">
+              <option value="">— Select —</option>
+              <option value="essential">Essential from day one</option>
+              <option value="supplementary">Nice to have — include if possible</option>
+              <option value="later">Phase 2 — start API only</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════ SUMMARY ═══════════ -->
+  <div class="summary-section">
+    <div class="summary-bg"></div>
+    <div class="summary-inner">
+      <div class="summary-title">Value Summary</div>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <div class="sc-label">Lever 1 — Efficiency</div>
+          <div class="sc-val teal" id="s-l1">$0</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Lever 2 — SOW Value</div>
+          <div class="sc-val teal" id="s-l2">$0</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Lever 3+4 — Revenue</div>
+          <div class="sc-val teal" id="s-l34">$0</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">Lever 5 — Group</div>
+          <div class="sc-val teal" id="s-l5">$0</div>
+        </div>
+      </div>
+
+      <div class="summary-grid" style="grid-template-columns:1fr 1fr;margin-bottom:24px;">
+        <div class="summary-card">
+          <div class="sc-label">Total Annual Value Identified</div>
+          <div class="sc-val teal" id="s-total">$0</div>
+        </div>
+        <div class="summary-card">
+          <div class="sc-label">ROI Multiple &amp; Payback</div>
+          <div class="sc-val" id="s-roi-note" style="font-size:14px;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;font-weight:400;line-height:1.4;">Included in formal proposal</div>
+        </div>
+      </div>
+
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label">
+          <span>Total value identified</span>
+          <span id="bar-pct-label" style="color:rgba(255,255,255,.5);">$0</span>
+        </div>
+        <div class="roi-bar-track">
+          <div class="roi-bar-fill" id="roi-bar" style="width:0%"></div>
+        </div>
+      </div>
+
+      <div class="narrative-box">
+        <div class="narrative-label">Value Summary — auto-generated</div>
+        <div class="narrative-text" id="narrative">Complete the sections above to generate your value summary.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function fmt(n) {
+  if (!n || isNaN(n) || n === 0) return '—';
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+  return '$' + Math.round(n);
+}
+function fmtShort(n) {
+  if (!n || isNaN(n) || n === 0) return '$0';
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+  return '$' + Math.round(n);
+}
+function val(id) {
+  const el = document.getElementById(id);
+  return el ? (parseFloat(el.value) || 0) : 0;
+}
+function set(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
+function countFilled() {
+  const inputs = document.querySelectorAll('input[type="number"]');
+  let filled = 0;
+  inputs.forEach(i => { if (i.value && parseFloat(i.value) > 0) filled++; });
+  return Math.min(100, Math.round((filled / inputs.length) * 100));
+}
+
+function calc() {
+  const rcCost = val('rc-people') * val('rc-hours') * val('rc-rate');
+  const rcSavings = rcCost * (val('rc-pct') / 100);
+  set('rc-cost', rcCost ? fmt(rcCost) : '—');
+  set('rc-savings', rcSavings ? fmt(rcSavings) : '—');
+  const l1 = rcSavings;
+  set('l1-total', fmtShort(l1));
+  set('s-l1', fmtShort(l1));
+
+  const sowVal = (val('sow-spend') * 1000000) * (val('sow-pct') / 100);
+  const sowTime = val('sow-negs') * val('sow-hrs') * val('sow-rate');
+  const l2 = sowVal + sowTime;
+  set('sow-value', sowVal ? fmt(sowVal) : '—');
+  set('sow-time-val', sowTime ? fmt(sowTime) : '—');
+  set('l2-total', fmtShort(l2));
+  set('s-l2', fmtShort(l2));
+
+  const pfVal = (val('pf-clients') * val('pf-rev')) * 1000;
+  const l3 = pfVal;
+  set('pf-value', pfVal ? fmt(pfVal) : '—');
+  set('l3-total', fmtShort(l3));
+
+  const miRetention = val('mi-churn') * (val('mi-rev') * 1000) * (val('mi-pct') / 100);
+  const miDirect = val('mi-direct') * 1000;
+  const l4 = miRetention + miDirect;
+  set('mi-value', miRetention ? fmt(miRetention) : '—');
+  set('l4-total', fmtShort(l4));
+  set('s-l34', fmtShort(l3 + l4));
+
+  const groupVal = val('group-count') * (val('group-val') * 1000);
+  const l5 = groupVal;
+  set('group-value', groupVal ? fmt(groupVal) : '—');
+  set('l5-total', fmtShort(l5));
+  set('s-l5', fmtShort(l5));
+
+  const total = l1 + l2 + l3 + l4 + l5;
+  set('grand-total', fmtShort(total));
+  set('s-total', fmtShort(total));
+
+  const barPct = total > 0 ? Math.min(100, Math.round((total / 3000000) * 100)) : 0;
+  document.getElementById('roi-bar').style.width = barPct + '%';
+  set('bar-pct-label', total > 0 ? fmtShort(total) + ' identified' : '$0');
+
+  document.getElementById('progress-strip').style.width = countFilled() + '%';
+
+  if (total > 0) {
+    let parts = [];
+    if (l1 > 0) parts.push(`${fmtShort(l1)} in rate card process efficiency`);
+    if (l2 > 0) parts.push(`${fmtShort(l2)} in SOW pricing accuracy and negotiation time`);
+    if (l3 + l4 > 0) parts.push(`${fmtShort(l3+l4)} in Pathfinder revenue enablement and market intelligence differentiation`);
+    if (l5 > 0) parts.push(`${fmtShort(l5)} in Adecco Group expansion potential`);
+    const levers = parts.length > 1 ? parts.slice(0,-1).join(', ') + ', and ' + parts[parts.length-1] : parts[0] || '';
+    set('narrative', `This analysis identifies ${fmtShort(total)} in measurable annual value across ${parts.length} levers — ${levers}. This positions the TalentNeuron partnership as the intelligence infrastructure powering Pathfinder and Pontoon's market intelligence practice, while creating an Adecco Group-level platform opportunity. ROI multiple and payback period will be included in the formal proposal.`);
+  } else {
+    set('narrative', 'Complete the sections above to generate your value summary.');
+  }
+}
+
+// ── LOCALSTORAGE PERSISTENCE ──
+const STORE_KEY = 'tn_pontoon_prospect_v1';
+
+const TEXT_IDS = ['pf-risk','mi-qual','group-entities','risk-competitive','risk-operational','risk-reputational'];
+const NUMBER_IDS = ['rc-people','rc-hours','rc-rate','rc-pct','rc-cards','sow-spend','sow-pct','sow-negs','sow-hrs','sow-rate','pf-clients','pf-rev','mi-churn','mi-rev','mi-pct','mi-direct','group-count','group-val','api-rc-titles','api-rc-freq','api-pf-daily','api-sow-monthly','api-sched-monthly','ui-seats','ui-freq'];
+const SELECT_IDS = ['api-pf-mode','ui-essential'];
+const CHECK_IDS = ['ui-market','ui-sow','ui-rc','ui-exec'];
+
+function saveState() {
+  const state = {};
+  NUMBER_IDS.forEach(id => { const el = document.getElementById(id); if (el) state[id] = el.value; });
+  TEXT_IDS.forEach(id => { const el = document.getElementById(id); if (el) state[id] = el.value; });
+  SELECT_IDS.forEach(id => { const el = document.getElementById(id); if (el) state[id] = el.value; });
+  CHECK_IDS.forEach(id => { const el = document.getElementById(id); if (el) state[id] = el.checked; });
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    NUMBER_IDS.forEach(id => { const el = document.getElementById(id); if (el && state[id] !== undefined) el.value = state[id]; });
+    TEXT_IDS.forEach(id => { const el = document.getElementById(id); if (el && state[id] !== undefined) el.value = state[id]; });
+    SELECT_IDS.forEach(id => { const el = document.getElementById(id); if (el && state[id] !== undefined) el.value = state[id]; });
+    CHECK_IDS.forEach(id => { const el = document.getElementById(id); if (el && state[id] !== undefined) el.checked = state[id]; });
+  } catch(e) {}
+}
+
+function clearState() {
+  if (confirm('Clear all saved data and start fresh?')) {
+    try { localStorage.removeItem(STORE_KEY); } catch(e) {}
+    NUMBER_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    TEXT_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    SELECT_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    CHECK_IDS.forEach(id => { const el = document.getElementById(id); if (el) el.checked = false; });
+    calc();
+  }
+}
+
+// Attach save to all inputs
+document.querySelectorAll('input, select, textarea').forEach(el => {
+  el.addEventListener('input', saveState);
+  el.addEventListener('change', saveState);
+});
+
+// Safety net: fire calc after full DOM load in case localStorage restore beat element render
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() { loadState(); calc(); });
+} else {
+  loadState(); calc();
+}
+</script>
+
+<!-- Save indicator + clear button -->
+<div style="position:fixed;bottom:20px;right:24px;display:flex;gap:10px;align-items:center;z-index:100;">
+  <div id="save-indicator" style="font-size:11px;color:#9898B0;font-family:'Inter',sans-serif;opacity:0;transition:opacity .4s;">✓ Saved</div>
+  <button onclick="clearState()" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:#9898B0;background:#fff;border:1px solid #E2E0EE;border-radius:8px;padding:8px 14px;cursor:pointer;">Reset</button>
+</div>
+<script>
+  // Flash save indicator on every change
+  document.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', () => {
+      const ind = document.getElementById('save-indicator');
+      ind.style.opacity = '1';
+      setTimeout(() => { ind.style.opacity = '0'; }, 1500);
+    });
+  });
+</script>
+</body>
+</html>
