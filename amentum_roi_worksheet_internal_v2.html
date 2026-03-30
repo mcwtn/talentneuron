@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentNeuron × Amentum — Internal ROI Worksheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --tn-purple: #4A1FA8;
+  --tn-purple-mid: #6B3CC7;
+  --tn-purple-light: #EDE8FB;
+  --tn-purple-xlight: #F7F5FE;
+  --tn-teal: #00B4A6;
+  --tn-teal-light: #E0F7F5;
+  --tn-teal-dark: #007A70;
+  --ink: #0F0F1A;
+  --ink-2: #2A2A42;
+  --ink-3: #5E5E7A;
+  --ink-4: #9898B0;
+  --surface: #FAFAFA;
+  --surface-2: #F3F3F8;
+  --border: #E2E0EE;
+  --white: #FFFFFF;
+  --amber: #E8900A;
+  --amber-light: #FEF6E4;
+  --red: #C0392B;
+}
+
+html { font-size: 15px; scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--ink); min-height: 100vh; }
+
+/* ── HEADER ── */
+.header { background: var(--tn-purple); padding: 0; position: relative; overflow: hidden; }
+.header-inner {
+  position: relative; z-index: 2;
+  padding: 36px 56px 32px;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 32px;
+}
+.header-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(0,180,166,.18) 0%, transparent 60%),
+              radial-gradient(ellipse at 10% 80%, rgba(107,60,199,.4) 0%, transparent 50%);
+}
+.logo-lockup { display: flex; align-items: center; gap: 14px; }
+.logo-mark { width: 36px; height: 36px; background: var(--tn-teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.logo-mark svg { width: 20px; height: 20px; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -.01em; }
+.logo-text span { color: var(--tn-teal); }
+.header-center { flex: 1; text-align: center; }
+.header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+.header-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; color: #fff; line-height: 1.2; letter-spacing: -.02em; }
+.header-title em { color: var(--tn-teal); font-style: normal; }
+.internal-tag {
+  display: inline-block; margin-top: 8px;
+  font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  color: rgba(255,255,255,.6); border-radius: 4px; padding: 3px 10px;
+}
+.header-right { text-align: right; flex-shrink: 0; }
+.total-label { font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.total-value { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 700; color: var(--tn-teal); letter-spacing: -.02em; line-height: 1; }
+.total-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 4px; }
+.progress-strip { height: 4px; background: rgba(255,255,255,.1); }
+.progress-fill-strip { height: 100%; background: linear-gradient(90deg, var(--tn-teal), #5CF0E0); transition: width .5s ease; border-radius: 0 2px 2px 0; }
+
+/* ── LAYOUT ── */
+.body-wrap { max-width: 1060px; margin: 0 auto; padding: 40px 40px 80px; }
+
+/* ── INTRO ── */
+.intro-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+  padding: 28px 32px; margin-bottom: 32px;
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+}
+.intro-text { font-size: 14px; color: var(--ink-2); line-height: 1.65; }
+.intro-text strong { color: var(--tn-purple); }
+.intro-meta { display: flex; flex-direction: column; gap: 10px; min-width: 195px; }
+.meta-chip {
+  background: var(--tn-purple-xlight); border: 1px solid var(--tn-purple-light);
+  border-radius: 10px; padding: 12px 18px; text-align: center;
+}
+.meta-label { font-size: 10px; color: var(--tn-purple-mid); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; margin-bottom: 4px; }
+.meta-val { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--tn-purple); line-height: 1.3; }
+
+/* ── AE COACHING BLOCK ── */
+.ae-frame {
+  background: var(--tn-purple-xlight); border: 1px solid var(--tn-purple-light);
+  border-radius: 12px; padding: 20px 24px; margin-bottom: 28px;
+}
+.ae-frame-label {
+  font-size: 10px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--tn-purple); margin-bottom: 10px;
+}
+.ae-frame-text { font-size: 13px; color: var(--ink-2); line-height: 1.7; }
+.ae-frame-text strong { color: var(--tn-purple); font-weight: 600; }
+
+/* ── SECTION ── */
+.section { margin-bottom: 28px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.section-num {
+  width: 32px; height: 32px; background: var(--tn-purple); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.section-title-wrap { flex: 1; }
+.section-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.section-subtitle { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
+.section-roi { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--tn-teal-dark); }
+.section-roi-label { font-size: 11px; color: var(--ink-4); text-align: right; }
+.section-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+
+/* ── QUESTION BLOCK ── */
+.q-block {
+  padding: 22px 28px; border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;
+}
+.q-block:last-child { border-bottom: none; }
+.q-block.full-width { grid-template-columns: 1fr; }
+.q-who { font-size: 10.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--tn-teal-dark); margin-bottom: 6px; }
+.q-text { font-size: 13.5px; font-weight: 500; color: var(--ink); line-height: 1.5; margin-bottom: 8px; }
+.q-boardframe { font-size: 12px; color: var(--ink-3); line-height: 1.55; padding-left: 12px; border-left: 2px solid var(--tn-purple-light); }
+.q-boardframe strong { color: var(--tn-purple-mid); }
+
+.q-coach {
+  background: var(--amber-light); border-left: 3px solid var(--amber);
+  border-radius: 0 6px 6px 0; padding: 10px 14px; margin-top: 10px;
+  font-size: 12px; color: var(--ink-2); line-height: 1.6;
+}
+.q-coach-label { font-size: 9px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--amber); margin-bottom: 5px; }
+
+.note-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; padding: 4px 10px; border-radius: 20px; font-weight: 500; margin-top: 8px;
+}
+.note-warn  { background: var(--amber-light); color: var(--amber); }
+.note-info  { background: var(--tn-teal-light); color: var(--tn-teal-dark); }
+.note-board { background: var(--tn-purple-light); color: var(--tn-purple); }
+
+.field-label { font-size: 11px; color: var(--ink-4); font-weight: 500; margin-bottom: 6px; letter-spacing: .04em; }
+
+input[type="number"], input[type="text"], select, textarea {
+  width: 100%; background: var(--surface-2); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 10px 14px; font-size: 13.5px;
+  font-family: 'Inter', sans-serif; color: var(--ink);
+  transition: border-color .15s, box-shadow .15s; outline: none;
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; }
+input:focus, select:focus, textarea:focus {
+  border-color: var(--tn-purple-mid); box-shadow: 0 0 0 3px rgba(74,31,168,.08); background: var(--white);
+}
+textarea { resize: vertical; min-height: 72px; }
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+
+.calc-result {
+  background: var(--tn-purple-xlight); border: 1px solid var(--tn-purple-light);
+  border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.calc-result-label { font-size: 12px; color: var(--tn-purple-mid); font-weight: 500; }
+.calc-result-value { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--tn-purple); }
+
+.teal-callout {
+  background: var(--tn-teal-light); border-left: 4px solid var(--tn-teal);
+  border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 0 28px 22px;
+  font-size: 13px; color: var(--ink-2); line-height: 1.6;
+}
+.teal-callout strong { color: var(--tn-teal-dark); }
+
+/* ── INVESTMENT BLOCK ── */
+.investment-block {
+  border: 1.5px dashed var(--border); border-radius: 14px; padding: 24px 28px; margin-top: 28px;
+  background: var(--white);
+}
+.inv-header { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.inv-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; color: var(--ink); }
+.inv-badge {
+  font-size: 10px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  background: var(--amber-light); color: var(--amber); border-radius: 4px; padding: 3px 10px;
+}
+.inv-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.inv-result {
+  background: var(--tn-teal-light); border: 1px solid rgba(0,180,166,.25);
+  border-radius: 8px; padding: 12px 16px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.inv-result-label { font-size: 12px; color: var(--tn-teal-dark); font-weight: 500; }
+.inv-result-val { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--tn-teal-dark); }
+.inv-note { font-size: 12px; color: var(--ink-4); line-height: 1.6; margin-top: 14px; }
+
+/* ── SUMMARY ── */
+.summary-section {
+  background: var(--tn-purple); border-radius: 16px; padding: 36px 40px;
+  margin-top: 36px; position: relative; overflow: hidden;
+}
+.summary-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 90% 20%, rgba(0,180,166,.2) 0%, transparent 50%); }
+.summary-inner { position: relative; z-index: 2; }
+.summary-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 24px; letter-spacing: -.01em; }
+.summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 16px; }
+.summary-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 16px; }
+.sc-label { font-size: 10px; color: rgba(255,255,255,.5); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.sc-val { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -.01em; line-height: 1; }
+.sc-val.teal { color: var(--tn-teal); }
+.roi-bar-wrap { margin-bottom: 24px; }
+.roi-bar-label { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 8px; }
+.roi-bar-track { height: 8px; background: rgba(255,255,255,.12); border-radius: 4px; overflow: hidden; }
+.roi-bar-fill { height: 100%; background: linear-gradient(90deg, var(--tn-teal), #5CF0E0); border-radius: 4px; transition: width .6s ease; min-width: 2px; }
+.narrative-box { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 18px 22px; }
+.narrative-label { font-size: 10px; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
+.narrative-text { font-size: 13.5px; color: rgba(255,255,255,.85); line-height: 1.7; }
+
+@media(max-width:760px){
+  .q-block { grid-template-columns: 1fr; }
+  .input-row { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .body-wrap { padding: 24px 20px 60px; }
+  .intro-card { grid-template-columns: 1fr; }
+  .inv-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-inner">
+    <div class="logo-lockup">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/>
+          <path d="M6 10h8M10 6v8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">Talent<span>Neuron</span></div>
+    </div>
+    <div class="header-center">
+      <div class="header-eyebrow">Amentum × TalentNeuron — SWP Platform</div>
+      <div class="header-title">Investment ROI <em>Worksheet</em></div>
+      <div><span class="internal-tag">AE Internal Only — Never Share with Prospect</span></div>
+    </div>
+    <div class="header-right">
+      <div class="total-label">Projected Annual Value</div>
+      <div class="total-value" id="grand-total">$0</div>
+      <div class="total-sub">Enter investment below to calculate ROI</div>
+    </div>
+  </div>
+  <div class="progress-strip">
+    <div class="progress-fill-strip" id="progress-strip" style="width:0%"></div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="intro-card">
+    <div class="intro-text">
+      This is the AE-facing version of the Value Assessment. It contains the same calculation engine as the prospect-facing worksheet plus: <strong>AE coaching notes on how to ask each question, the investment input field, auto-calculated ROI multiple and payback period, and the full ELT narrative.</strong> Complete this version before or during the session with Jason. Then send the prospect-facing version (without investment data or coaching notes) as the follow-up artifact.
+    </div>
+    <div class="intro-meta">
+      <div class="meta-chip"><div class="meta-label">AE</div><div class="meta-val">Kevin Bing</div></div>
+      <div class="meta-chip"><div class="meta-label">Primary Contact</div><div class="meta-val">Jason Cerrato</div></div>
+      <div class="meta-chip"><div class="meta-label">Price Range</div><div class="meta-val">$300K – $500K</div></div>
+    </div>
+  </div>
+
+  <!-- AE STRATEGIC BRIEF -->
+  <div class="ae-frame">
+    <div class="ae-frame-label">AE Strategic Frame — Read Before the Session</div>
+    <div class="ae-frame-text">
+      The sharpest angle for this deal is <strong>delivery risk, not HR efficiency.</strong> Jason has already done the framing work: "people are the product" at Amentum. The ELT question he's trying to answer for Heller and Travis Johnson isn't "how do we make HR more efficient" — it's "how do we know we can deliver on what we've already won?" Every question in this worksheet should return to that frame.<br><br>
+      <strong>Frame TalentNeuron as delivery assurance infrastructure, not HR software.</strong> This is $300–500K in program ramp readiness for a company with a $47B backlog and an accelerating nuclear build cycle. When you get to the investment conversation, the denominator is not the HR budget — it is the value of the programs that depend on getting this right.<br><br>
+      One flag: Jason stated the competitive set for nuclear talent is "changing — not the usual competitors." Public data suggests GovCon peers as the natural comparison. <strong>Use Jason's framing exclusively</strong> — he is closer to the operational reality and he has to take this to Heller.
+    </div>
+  </div>
+
+  <!-- ═══════ LEVER 1 ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Manual Planning &amp; Reporting Cost</div>
+        <div class="section-subtitle">Labor cost of operating without centralized workforce intelligence</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 1 Value</div>
+        <div class="section-roi" id="l1-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-who">Ask Jason</div>
+          <div class="q-text">How many people across HR, finance, and the business units spend meaningful time manually compiling workforce data, planning inputs, or executive reporting?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Amentum has no enterprise SWP layer. Every planning cycle begins with manual data assembly across fragmented BUs. The labor cost of that manual process is a direct offset against the platform investment — one of the most defensible calculations in the deck.</div>
+          <div class="q-coach">
+            <div class="q-coach-label">How to ask it</div>
+            "Before any workforce report or plan reaches the ELT, how many people touch the underlying data — across all BUs and functions? Include analysts, HR BPs, finance partners, and anyone who reconciles BU inputs." Don't accept just Jason's direct team. The E&amp;E HRBP who spent two months gathering inputs without a scenario is the right image to anchor this.
+          </div>
+          <div class="note-pill note-info">✦ Jason confirmed: no single enterprise view exists — planning is fragmented by BU</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">People involved in manual planning</div>
+              <input type="number" id="plan-people" placeholder="e.g. 5" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Hours per person / month</div>
+              <input type="number" id="plan-hours" placeholder="e.g. 20" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="field-label">Avg fully-loaded hourly cost ($)</div>
+          <input type="number" id="plan-rate" placeholder="e.g. 110" min="0" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Annual cost of manual planning</div>
+            <div class="calc-result-value" id="plan-cost">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-who">Ask Jason</div>
+          <div class="q-text">What percentage of that manual effort would a centralized SWP platform eliminate or repurpose toward higher-value work?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Data pulls, cross-BU reconciliation, executive deck assembly — these disappear with a platform. What remains is human judgment and scenario interpretation. That's what Jason's team should be doing, not spreadsheet maintenance.</div>
+          <div class="q-coach">
+            <div class="q-coach-label">How to ask it</div>
+            Walk through the current process step by step and ask: "If data were centralized and scenarios ran on a platform, which of these steps disappear?" Count them. The percentage is usually higher than Jason's first instinct — he'll anchor low. 50–70% is well-supported for this type of consolidation.
+          </div>
+        </div>
+        <div>
+          <div class="field-label">% of manual effort eliminated by platform</div>
+          <input type="number" id="plan-pct" placeholder="e.g. 65" min="0" max="100" oninput="calc()" onchange="calc()" style="margin-bottom:12px;">
+          <div class="calc-result">
+            <div class="calc-result-label">Annual efficiency savings (Lever 1)</div>
+            <div class="calc-result-value" id="plan-savings">—</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ LEVER 2 ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Delivery Capacity — Program Staffing Risk</div>
+        <div class="section-subtitle">Revenue and delivery risk of staffing critical programs reactively vs. proactively</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 2 Value</div>
+        <div class="section-roi" id="l2-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-who">Ask Jason + Shelby</div>
+          <div class="q-text">How many critical nuclear and engineering roles does Amentum plan to fill per year, and what is the current average time-to-fill for those roles?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Amentum's backlog converts to revenue only when programs are staffed. In the nuclear market, 63% of employers report hiring as "very difficult" (DOE, 2024). Proactive planning turns a 90-day reactive search into a 60-day proactive sourcing campaign. That delta is real delivery capacity.</div>
+          <div class="q-coach">
+            <div class="q-coach-label">How to ask it</div>
+            "For the types of roles that, if unfilled, actually delay a program — site directors, project controls leads, safety case engineers, cleared PMs — how many of those do you fill per year and how long does it typically take?" Push for the long-tail distribution, not the average. Jason flagged the average is unreliable — Shelby has the operational reality.
+          </div>
+          <div class="note-pill note-warn">⚠ Jason said "% of revenue-generating roles filled" is the CEO's metric but the underlying data is inconsistent. Use Shelby's view on actual time-to-fill, not the reported average.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">Critical hires / year</div>
+              <input type="number" id="del-hires" placeholder="e.g. 300" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Avg days to fill (critical roles)</div>
+              <input type="number" id="del-ttf" placeholder="e.g. 90" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="field-label">Days saved per hire with proactive SWP planning</div>
+          <input type="number" id="del-days-saved" placeholder="e.g. 20" min="0" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Total recruiting days recovered / year</div>
+            <div class="calc-result-value" id="del-days-total">—</div>
+          </div>
+          <div class="note-pill note-info" style="margin-top:8px;">✦ Shelby said current planning horizon is "about 60 days" — ask what the right horizon should be</div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-who">Ask Jason / Finance</div>
+          <div class="q-text">What is the daily delivery cost or revenue impact of an unfilled critical role on a live program?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> This is the number that makes the board pay attention. It transforms the conversation from HR efficiency to program delivery economics. Even an order of magnitude ($5K/day vs. $20K/day) produces a number that dwarfs the investment. Let Jason make this uncomfortable — he should.</div>
+          <div class="q-coach">
+            <div class="q-coach-label">How to ask it</div>
+            "If a key nuclear role is unfilled for 30 days — a site director or project controls lead on a live program — what does that cost in delayed delivery, performance risk, or penalty exposure?" If Jason doesn't know, ask him to connect Kevin with program finance for a single data point. This is the highest-leverage number in the deck.
+          </div>
+          <div class="note-pill note-board">★ Primary frame: SWP as delivery assurance infrastructure, not HR software</div>
+        </div>
+        <div>
+          <div class="field-label">Daily delivery cost per unfilled critical role ($)</div>
+          <input type="number" id="del-daily-cost" placeholder="e.g. 8000" min="0" oninput="calc()" onchange="calc()">
+          <div class="field-label" style="margin-top:10px;">% of critical hires where proactive planning materially reduces delay</div>
+          <input type="number" id="del-pct-impact" placeholder="e.g. 40" min="0" max="100" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Delivery risk value avoided (Lever 2)</div>
+            <div class="calc-result-value" id="del-value">—</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ LEVER 3 ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Internal Mobility &amp; Redeployment Leakage</div>
+        <div class="section-subtitle">Cost of hiring externally when internal talent could have been redeployed</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 3 Value</div>
+        <div class="section-roi" id="l3-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-who">Ask Jason</div>
+          <div class="q-text">For technical and engineering roles filled externally, what percentage could have been filled internally with enterprise-wide visibility into skills and availability?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Jason explicitly named "subcontractor dependency and redeployment leakage" as cost levers in his March email. At 50,000 employees across 70+ countries, Amentum's internal talent pool is a significantly underutilized asset. Every preventable external hire is a cost event that compounds across a large, distributed workforce.</div>
+          <div class="q-coach">
+            <div class="q-coach-label">How to ask it</div>
+            "When you look at roles we filled externally last year — in engineering, PM, and project controls — what % do you think we could have filled internally if we'd had a current, searchable picture of who was available and when?" Jason flagged this explicitly; validate his intuition with a number. Even 10–15% against a large external hire volume produces a compelling figure.
+          </div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">External technical hires / year</div>
+              <input type="number" id="mob-ext-hires" placeholder="e.g. 500" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">% addressable internally</div>
+              <input type="number" id="mob-pct" placeholder="e.g. 15" min="0" max="100" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="field-label">Avg premium cost: external vs. internal hire ($)</div>
+          <input type="number" id="mob-premium" placeholder="e.g. 55000" min="0" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Annual redeployment savings (Lever 3)</div>
+            <div class="calc-result-value" id="mob-value">—</div>
+          </div>
+          <div class="note-pill note-info" style="margin-top:8px;">✦ Cleared technical roles: external hiring premium typically runs $40–$80K over internal redeployment</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ LEVER 4 ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Platform Expansion — E&amp;E to Enterprise</div>
+        <div class="section-subtitle">Value trajectory as SWP scales from the E&amp;E pilot to the broader Amentum enterprise</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 4 Value</div>
+        <div class="section-roi" id="l4-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-who">Ask Jason</div>
+          <div class="q-text">When you present this to Darren Burton and the ELT, are you framing this as an E&amp;E investment or as the first step in an enterprise SWP capability?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> An E&amp;E-only investment is a BU budget conversation. A platform decision that scales to Digital Solutions, Global Engineering Solutions, and the enterprise SWP vision Jason has articulated is an ELT conversation. The $300–500K price point feels different when the denominator is the full enterprise value trajectory.</div>
+          <div class="q-coach">
+            <div class="q-coach-label">How to ask it</div>
+            "When Darren or Heller looks at this investment, are they evaluating it as an E&amp;E line item or as the foundation of an enterprise SWP capability? Which framing gives you more runway on budget approval?" Jason has said he's pitching to Heller, Travis Johnson, Steve Arnett, and CIO Luis — this needs an enterprise frame to land at that level.
+          </div>
+          <div class="note-pill note-board">★ Jason is actively pitching to the ELT — the expansion framing is already in his head, surface it explicitly</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">BUs in realistic expansion scope</div>
+              <input type="number" id="exp-bus" placeholder="e.g. 2" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Est. value per BU at similar scope ($K/yr)</div>
+              <input type="number" id="exp-val" placeholder="e.g. 200" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Enterprise expansion potential (annual)</div>
+            <div class="calc-result-value" id="exp-value">—</div>
+          </div>
+          <div class="note-pill note-warn" style="margin-top:8px;">⚠ Present as potential, not commitment — "if Digital Solutions and GES adopt at similar scope..."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ COST OF INACTION ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Cost of Inaction — Risk Statements</div>
+        <div class="section-subtitle">Capture in Jason's exact language — these become the opening of the ELT deck</div>
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="q-block full-width">
+        <div class="q-prompt">
+          <div class="q-who">Ask Jason — most important question in the session</div>
+          <div class="q-text">If this problem isn't solved in the next 12 months, what is the realistic worst-case scenario for Amentum's ability to deliver on its nuclear and defense pipeline?</div>
+          <div class="q-boardframe"><strong>Board lens:</strong> Boards approve investments faster when the cost of NOT investing is clear. "We are currently exposed to X risk, and this investment eliminates it" closes faster than "we will generate Y return." Capture Jason's exact language — it carries more authority than any external framing.</div>
+          <div class="q-coach">
+            <div class="q-coach-label">How to ask it</div>
+            "Jason, if we're having this same conversation in 18 months and nothing has changed — no enterprise SWP, E&amp;E still planning reactively, Shelby's team still at 60 days — what's the worst-case scenario for program delivery? For your relationship with Heller? For the credibility of the HR transformation?"
+          </div>
+        </div>
+      </div>
+      <div style="padding:0 28px 20px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);">Delivery risk (Jason's words)</div>
+          <textarea id="risk-delivery" placeholder="e.g. 'If we can't staff the nuclear ramp fast enough, we face delivery penalties and risk a government-backed client relationship...'"></textarea>
+        </div>
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);">Planning / process risk</div>
+          <textarea id="risk-planning" placeholder="e.g. 'The E&E HRBP spent 2 months on inputs without a scenario. That repeats every cycle — and the business loses patience with HR...'"></textarea>
+        </div>
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);">Talent market risk</div>
+          <textarea id="risk-talent" placeholder="e.g. 'The competitive set for nuclear talent is changing. We are navigating a market we don&apos;t understand without current LMI...'"></textarea>
+        </div>
+      </div>
+      <div style="padding:0 28px 24px;">
+        <div class="field-label" style="font-weight:600;color:var(--ink-2);">Jason's top-of-mind risk — in his exact words</div>
+        <textarea id="risk-top" placeholder="Capture what he says when you ask 'What keeps you up at night about talent at Amentum right now?' — this becomes the opening line of the ELT deck"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ USAGE PROFILE ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num" style="font-size:16px;">↗</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Usage Profile &amp; Platform Scope</div>
+        <div class="section-subtitle">Right-sizing the engagement — informs scope, not pricing</div>
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="q-block">
+        <div class="q-prompt">
+          <div class="q-who">Ask Jason + Shelby</div>
+          <div class="q-text">Which BUs, which geographies, which planning cycles, and who would actually use the platform in Phase 1?</div>
+          <div class="q-boardframe"><strong>Why this matters:</strong> Right-sizing the scope means Amentum gets exactly what they need and TN proposes the right platform configuration. Jason confirmed E&amp;E as Phase 1. UK and US nuclear markets are the LMI priority. The job architecture project is mid-flight and may create a sequencing dependency — flag this in the proposal.</div>
+        </div>
+        <div>
+          <div class="field-label">Phase 1 BU</div>
+          <input type="text" id="scope-bu" placeholder="Energy &amp; Environment" style="margin-bottom:10px;">
+          <div class="input-row">
+            <div>
+              <div class="field-label">Key LMI geographies (Phase 1)</div>
+              <input type="text" id="scope-geo" placeholder="e.g. UK, US nuclear markets">
+            </div>
+            <div>
+              <div class="field-label">Planning horizon target (months)</div>
+              <input type="number" id="scope-horizon" placeholder="e.g. 6" min="0">
+            </div>
+          </div>
+          <div class="field-label">Job architecture % complete</div>
+          <input type="text" id="scope-jarch" placeholder="e.g. 60% — ongoing, Total Rewards-led" style="margin-bottom:10px;">
+          <div class="field-label">Estimated named users (HR, TA, Finance, BU)</div>
+          <input type="number" id="scope-users" placeholder="e.g. 15" min="0">
+        </div>
+      </div>
+      <div class="q-block" style="border-top:1px solid var(--border);">
+        <div class="q-prompt">
+          <div class="q-who">Ask Darrel Eplee</div>
+          <div class="q-text">What is Darrel actually using TalentNeuron for today — and what is he not using that he should be?</div>
+          <div class="q-coach">
+            <div class="q-coach-label">How to ask it</div>
+            Darrel said on the October call: "What I'm doing is super underutilized in TalentNeuron's capabilities." Walk him through his current use cases and map the gap. The delta is the expansion story — and it makes the case that TN is already embedded, the question is whether they're using it at full value.
+          </div>
+        </div>
+        <div>
+          <div class="field-label">Current TN use cases (Darrel today)</div>
+          <textarea id="darrel-current" placeholder="e.g. Strategic sourcing for internal selling, custom analysis requests, BD proposal support, marketing asset embedding..."></textarea>
+          <div class="field-label" style="margin-top:10px;">Gap — what he should be using but isn't</div>
+          <textarea id="darrel-gap" placeholder="e.g. Scenario modeling, supply/demand analysis for nuclear markets, skill adjacency mapping for internal mobility..."></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ INVESTMENT ═══════ -->
+  <div class="investment-block">
+    <div class="inv-header">
+      <div class="inv-title">Investment &amp; ROI Calculation</div>
+      <span class="inv-badge">Complete After Pricing Model Applied</span>
+    </div>
+    <div class="inv-grid">
+      <div>
+        <div class="field-label">Annual investment ($)</div>
+        <input type="number" id="investment" placeholder="Enter after pricing model applied" min="0" oninput="calc()" onchange="calc()">
+      </div>
+      <div>
+        <div class="field-label">ROI Multiple</div>
+        <div class="inv-result">
+          <div class="inv-result-label">Return on investment</div>
+          <div class="inv-result-val" id="roi-multiple">—</div>
+        </div>
+      </div>
+      <div>
+        <div class="field-label">Payback Period</div>
+        <div class="inv-result">
+          <div class="inv-result-label">Months to full return</div>
+          <div class="inv-result-val" id="roi-payback">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="inv-note">Enter the investment figure after running the pricing model. ROI multiple and payback period calculate automatically. Send the prospect-facing worksheet (without this field or coaching notes) as the post-session artifact to Jason. The investment figure stays internal.</div>
+  </div>
+
+  <!-- ═══════ SUMMARY ═══════ -->
+  <div class="summary-section">
+    <div class="summary-bg"></div>
+    <div class="summary-inner">
+      <div class="summary-title">ROI Summary — ELT &amp; Board View</div>
+      <div class="summary-grid">
+        <div class="summary-card"><div class="sc-label">Lever 1 — Planning Cost</div><div class="sc-val teal" id="s-l1">$0</div></div>
+        <div class="summary-card"><div class="sc-label">Lever 2 — Delivery Risk</div><div class="sc-val teal" id="s-l2">$0</div></div>
+        <div class="summary-card"><div class="sc-label">Lever 3 — Redeployment</div><div class="sc-val teal" id="s-l3">$0</div></div>
+        <div class="summary-card"><div class="sc-label">Lever 4 — Expansion</div><div class="sc-val teal" id="s-l4">$0</div></div>
+      </div>
+      <div class="summary-grid" style="grid-template-columns:1fr 1fr 1fr;margin-bottom:24px;">
+        <div class="summary-card" style="grid-column:span 1;"><div class="sc-label">Total Annual Value</div><div class="sc-val teal" id="s-total">$0</div></div>
+        <div class="summary-card"><div class="sc-label">ROI Multiple</div><div class="sc-val teal" id="s-multiple">—</div></div>
+        <div class="summary-card"><div class="sc-label">Payback Period</div><div class="sc-val" id="s-payback">—</div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span id="bar-label-text">Total value identified</span><span id="bar-pct-label">—</span></div>
+        <div class="roi-bar-track"><div class="roi-bar-fill" id="roi-bar" style="width:0%"></div></div>
+      </div>
+      <div class="narrative-box">
+        <div class="narrative-label">ELT Narrative — auto-generated</div>
+        <div class="narrative-text" id="narrative">Complete the worksheet above to generate the board-ready narrative for John Heller and the ELT.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="position:fixed;bottom:20px;right:24px;display:flex;gap:10px;align-items:center;z-index:100;">
+  <div id="save-indicator" style="font-size:11px;color:#9898B0;font-family:'Inter',sans-serif;opacity:0;transition:opacity .4s;">✓ Saved</div>
+  <button onclick="clearState()" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:#9898B0;background:#fff;border:1px solid #E2E0EE;border-radius:8px;padding:8px 14px;cursor:pointer;">Reset</button>
+</div>
+
+<script>
+function fmt(n) {
+  if (!n || isNaN(n) || n === 0) return '—';
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+  return '$' + Math.round(n);
+}
+function fmtS(n) {
+  if (!n || isNaN(n) || n === 0) return '$0';
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+  return '$' + Math.round(n);
+}
+function val(id) { const el = document.getElementById(id); return el ? (parseFloat(el.value) || 0) : 0; }
+function set(id, t) { const el = document.getElementById(id); if (el) el.textContent = t; }
+
+function calc() {
+  const planCost = val('plan-people') * val('plan-hours') * val('plan-rate') * 12;
+  const planSavings = planCost * (val('plan-pct') / 100);
+  set('plan-cost', planCost ? fmt(planCost) : '—');
+  set('plan-savings', planSavings ? fmt(planSavings) : '—');
+  const l1 = planSavings;
+  set('l1-total', fmtS(l1)); set('s-l1', fmtS(l1));
+
+  const daysRecovered = val('del-hires') * val('del-days-saved');
+  set('del-days-total', daysRecovered ? daysRecovered.toLocaleString() + ' days' : '—');
+  const delValue = val('del-hires') * (val('del-pct-impact')/100) * val('del-days-saved') * val('del-daily-cost');
+  set('del-value', delValue ? fmt(delValue) : '—');
+  const l2 = delValue;
+  set('l2-total', fmtS(l2)); set('s-l2', fmtS(l2));
+
+  const mobVal = val('mob-ext-hires') * (val('mob-pct')/100) * val('mob-premium');
+  set('mob-value', mobVal ? fmt(mobVal) : '—');
+  const l3 = mobVal;
+  set('l3-total', fmtS(l3)); set('s-l3', fmtS(l3));
+
+  const expVal = val('exp-bus') * val('exp-val') * 1000;
+  set('exp-value', expVal ? fmt(expVal) : '—');
+  const l4 = expVal;
+  set('l4-total', fmtS(l4)); set('s-l4', fmtS(l4));
+
+  const total = l1 + l2 + l3 + l4;
+  set('grand-total', fmtS(total)); set('s-total', fmtS(total));
+
+  const investment = val('investment');
+  if (investment > 0 && total > 0) {
+    const multiple = total / investment;
+    const paybackMonths = Math.round((investment / total) * 12);
+    set('roi-multiple', multiple.toFixed(1) + '×');
+    set('roi-payback', paybackMonths + ' months');
+    set('s-multiple', multiple.toFixed(1) + '×');
+    set('s-payback', paybackMonths + ' months');
+    const barPct = Math.min(100, Math.round((total / (investment * 10)) * 100));
+    document.getElementById('roi-bar').style.width = barPct + '%';
+    set('bar-pct-label', barPct + '% of 10× target');
+    set('bar-label-text', 'Progress to 10× return');
+    generateNarrative(total, multiple, l1, l2, l3, l4, paybackMonths, investment);
+  } else {
+    set('roi-multiple', '—'); set('roi-payback', '—');
+    set('s-multiple', '—'); set('s-payback', '—');
+    const barPct = total > 0 ? Math.min(100, Math.round((total / 5000000) * 100)) : 0;
+    document.getElementById('roi-bar').style.width = barPct + '%';
+    set('bar-pct-label', total > 0 ? fmtS(total) + ' identified' : '—');
+    set('bar-label-text', 'Total value identified');
+    if (total > 0) generateNarrativeNoPrice(total, l1, l2, l3, l4);
+    else set('narrative', 'Complete the worksheet above to generate the board-ready narrative for John Heller and the ELT.');
+  }
+
+  const inputs = document.querySelectorAll('input[type="number"]:not(#investment)');
+  let filled = 0;
+  inputs.forEach(i => { if (i.value && parseFloat(i.value) > 0) filled++; });
+  document.getElementById('progress-strip').style.width = Math.min(100, Math.round((filled/inputs.length)*100)) + '%';
+}
+
+function generateNarrative(total, multiple, l1, l2, l3, l4, payback, inv) {
+  const parts = [];
+  if (l1 > 0) parts.push(`${fmtS(l1)} in manual planning and reporting efficiency`);
+  if (l2 > 0) parts.push(`${fmtS(l2)} in delivery capacity and program staffing risk avoidance`);
+  if (l3 > 0) parts.push(`${fmtS(l3)} in internal redeployment and reduced external hiring cost`);
+  if (l4 > 0) parts.push(`${fmtS(l4)} in enterprise SWP expansion potential`);
+  const levers = parts.length > 1 ? parts.slice(0,-1).join(', ') + ', and ' + parts[parts.length-1] : (parts[0] || '');
+  const multipleStr = multiple >= 10
+    ? `a ${multiple.toFixed(1)}× return — exceeding the 10× threshold for this category of investment`
+    : `a ${multiple.toFixed(1)}× return against the annual investment`;
+  set('narrative', `A ${fmtS(inv)} annual investment in TalentNeuron's SWP platform is projected to deliver ${fmtS(total)} in annual value across ${parts.length} measurable lever${parts.length > 1 ? 's' : ''} — ${levers}. This represents ${multipleStr}, with a payback period of approximately ${payback} month${payback !== 1 ? 's' : ''}. The investment positions Amentum to convert its program backlog into realized revenue by solving the delivery capacity problem at its source: knowing where qualified nuclear and engineering talent exists, what it costs in each market, and how to plan for it before program ramps begin. For Heller and the ELT: this is not an HR tool investment. It is delivery assurance infrastructure for a business whose product is people deployed on mission-critical programs.`);
+}
+
+function generateNarrativeNoPrice(total, l1, l2, l3, l4) {
+  const parts = [];
+  if (l1 > 0) parts.push(`${fmtS(l1)} in manual planning and reporting efficiency`);
+  if (l2 > 0) parts.push(`${fmtS(l2)} in delivery capacity and program staffing risk avoidance`);
+  if (l3 > 0) parts.push(`${fmtS(l3)} in internal redeployment and reduced external hiring cost`);
+  if (l4 > 0) parts.push(`${fmtS(l4)} in enterprise SWP expansion potential`);
+  const levers = parts.length > 1 ? parts.slice(0,-1).join(', ') + ', and ' + parts[parts.length-1] : (parts[0] || '');
+  set('narrative', `This analysis identifies ${fmtS(total)} in measurable annual value across ${parts.length} lever${parts.length > 1 ? 's' : ''} — ${levers}. The investment positions Amentum to convert its program backlog into realized revenue by solving the delivery capacity problem at its source. For Heller and the ELT, the frame is not HR efficiency — it is delivery assurance for a $14B business whose product is people. ROI multiple and payback period will populate when the investment figure is entered above.`);
+}
+
+const KEY = 'tn_amentum_internal_v2';
+const NUM_IDS = ['plan-people','plan-hours','plan-rate','plan-pct','del-hires','del-ttf','del-days-saved','del-daily-cost','del-pct-impact','mob-ext-hires','mob-pct','mob-premium','exp-bus','exp-val','scope-users','scope-horizon','investment'];
+const TEXT_IDS = ['risk-delivery','risk-planning','risk-talent','risk-top','darrel-current','darrel-gap','scope-bu','scope-geo','scope-jarch'];
+
+function saveState() {
+  const s = {};
+  NUM_IDS.forEach(id => { const el = document.getElementById(id); if(el) s[id] = el.value; });
+  TEXT_IDS.forEach(id => { const el = document.getElementById(id); if(el) s[id] = el.value; });
+  try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e) {}
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(KEY); if (!raw) return;
+    const s = JSON.parse(raw);
+    NUM_IDS.forEach(id => { const el = document.getElementById(id); if(el && s[id] !== undefined) el.value = s[id]; });
+    TEXT_IDS.forEach(id => { const el = document.getElementById(id); if(el && s[id] !== undefined) el.value = s[id]; });
+  } catch(e) {}
+}
+function clearState() {
+  if (confirm('Clear all data and start fresh?')) {
+    try { localStorage.removeItem(KEY); } catch(e) {}
+    NUM_IDS.forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+    TEXT_IDS.forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+    calc();
+  }
+}
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('input', () => { saveState(); const ind = document.getElementById('save-indicator'); ind.style.opacity='1'; setTimeout(()=>ind.style.opacity='0',1500); });
+  el.addEventListener('change', saveState);
+});
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => { loadState(); calc(); });
+} else { loadState(); calc(); }
+</script>
+</body>
+</html>

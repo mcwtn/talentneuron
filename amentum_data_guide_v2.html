@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentNeuron × Amentum — Data Gathering Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --tn-purple: #4A1FA8;
+  --tn-purple-mid: #6B3CC7;
+  --tn-purple-light: #EDE8FB;
+  --tn-purple-xlight: #F7F5FE;
+  --tn-teal: #00B4A6;
+  --tn-teal-light: #E0F7F5;
+  --tn-teal-dark: #007A70;
+  --ink: #0F0F1A;
+  --ink-2: #2A2A42;
+  --ink-3: #5E5E7A;
+  --ink-4: #9898B0;
+  --surface: #FAFAFA;
+  --surface-2: #F3F3F8;
+  --border: #E2E0EE;
+  --white: #FFFFFF;
+  --amber: #E8900A;
+  --amber-light: #FEF6E4;
+}
+
+html { font-size: 15px; }
+body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--ink); min-height: 100vh; }
+
+/* ── HEADER ── */
+.header { background: var(--tn-purple); position: relative; overflow: hidden; }
+.header-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(0,180,166,.18) 0%, transparent 60%),
+              radial-gradient(ellipse at 10% 80%, rgba(107,60,199,.4) 0%, transparent 50%);
+}
+.header-inner {
+  position: relative; z-index: 2;
+  padding: 32px 56px 28px;
+  display: flex; justify-content: space-between; align-items: center; gap: 32px;
+}
+.logo-lockup { display: flex; align-items: center; gap: 14px; }
+.logo-mark { width: 36px; height: 36px; background: var(--tn-teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.logo-mark svg { width: 20px; height: 20px; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: #fff; }
+.logo-text span { color: var(--tn-teal); }
+.header-center { flex: 1; text-align: center; }
+.header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 6px; }
+.header-title { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 700; color: #fff; letter-spacing: -.02em; }
+.header-title em { color: var(--tn-teal); font-style: normal; }
+.header-badge {
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px; padding: 10px 18px; text-align: center;
+}
+.badge-label { font-size: 10px; color: rgba(255,255,255,.45); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+.badge-val { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: #fff; }
+
+/* ── LAYOUT ── */
+.body-wrap { max-width: 960px; margin: 0 auto; padding: 40px 40px 80px; }
+
+/* ── INTRO ── */
+.intro {
+  background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+  padding: 24px 28px; margin-bottom: 32px;
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+}
+.intro-text { font-size: 13.5px; color: var(--ink-2); line-height: 1.7; }
+.intro-text strong { color: var(--tn-purple); }
+.intro-who {
+  background: var(--tn-purple-xlight); border: 1px solid var(--tn-purple-light);
+  border-radius: 10px; padding: 16px 20px; min-width: 200px;
+}
+.who-label { font-size: 10px; color: var(--tn-purple-mid); letter-spacing: .08em; text-transform: uppercase; font-weight: 500; margin-bottom: 10px; }
+.who-row { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.who-row:last-child { margin-bottom: 0; }
+.who-dot { width: 28px; height: 28px; border-radius: 50%; background: var(--tn-purple); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; flex-shrink: 0; }
+.who-dot.teal { background: var(--tn-teal-dark); }
+.who-dot.mid { background: var(--tn-purple-mid); }
+.who-dot.gray { background: var(--ink-3); }
+.who-name { font-size: 12px; font-weight: 500; color: var(--ink-2); }
+.who-role { font-size: 11px; color: var(--ink-4); }
+
+/* ── SECTION ── */
+.section { margin-bottom: 24px; }
+.section-label { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.section-num {
+  width: 28px; height: 28px; background: var(--tn-purple); border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.section-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--ink); }
+.section-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+
+/* ── DATA ROW ── */
+.data-row {
+  display: grid; grid-template-columns: 32px 1fr 200px 120px;
+  gap: 0; border-bottom: 1px solid var(--border);
+  align-items: stretch;
+}
+.data-row:last-child { border-bottom: none; }
+.data-row.header-row { background: var(--tn-purple-xlight); }
+
+.cell {
+  padding: 13px 16px;
+  display: flex; align-items: center;
+  border-right: 1px solid var(--border);
+  font-size: 12.5px;
+}
+.cell:last-child { border-right: none; }
+.cell.num { justify-content: center; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; color: var(--tn-purple-mid); }
+.cell.data-point { flex-direction: column; align-items: flex-start; gap: 3px; }
+.data-name { font-weight: 500; color: var(--ink); font-size: 13px; line-height: 1.3; }
+.data-desc { font-size: 11.5px; color: var(--ink-3); line-height: 1.4; }
+.cell.source { font-size: 11.5px; color: var(--ink-3); line-height: 1.45; }
+.cell.owner { justify-content: center; }
+
+/* Owner badges */
+.owner-badge {
+  font-size: 10px; font-weight: 600; letter-spacing: .04em;
+  padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+}
+.owner-jason   { background: var(--tn-purple-light); color: var(--tn-purple); }
+.owner-shelby  { background: var(--tn-teal-light); color: var(--tn-teal-dark); }
+.owner-finance { background: #F0FDF4; color: #166534; }
+.owner-darrel  { background: #FEF3C7; color: #92400E; }
+.owner-team    { background: var(--surface-2); color: var(--ink-3); border: 1px solid var(--border); }
+
+/* Header cells */
+.cell.hdr { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--tn-purple-mid); }
+
+/* Precision badge */
+.precision {
+  font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 3px;
+  letter-spacing: .04em; margin-top: 4px; display: inline-block;
+}
+.exact    { background: #FEF2F2; color: #991B1B; }
+.estimate { background: var(--amber-light); color: var(--amber); }
+.range    { background: #F0FDF4; color: #166534; }
+.qualitative { background: var(--tn-purple-xlight); color: var(--tn-purple-mid); }
+
+/* ── CALLOUTS ── */
+.callout {
+  border-radius: 0 10px 10px 0; padding: 14px 18px; margin-bottom: 10px;
+  font-size: 13px; line-height: 1.6; color: var(--ink-2);
+}
+.callout.purple { background: var(--tn-purple-xlight); border-left: 4px solid var(--tn-purple); }
+.callout.teal   { background: var(--tn-teal-light); border-left: 4px solid var(--tn-teal); }
+.callout.amber  { background: var(--amber-light); border-left: 4px solid var(--amber); }
+.callout strong { font-weight: 600; }
+.callout.purple strong { color: var(--tn-purple); }
+.callout.teal   strong { color: var(--tn-teal-dark); }
+.callout.amber  strong { color: var(--amber); }
+
+/* ── LEGEND ── */
+.legend {
+  display: flex; gap: 20px; flex-wrap: wrap;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 10px; padding: 16px 20px; margin-bottom: 28px;
+}
+.legend-group { display: flex; align-items: center; gap: 8px; }
+.legend-label { font-size: 11px; color: var(--ink-3); }
+.legend-title { font-size: 11px; font-weight: 600; color: var(--ink-3); margin-right: 4px; }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--tn-purple); border-radius: 12px; padding: 22px 28px;
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+  margin-top: 32px;
+}
+.footer-text { font-size: 13px; color: rgba(255,255,255,.7); line-height: 1.6; }
+.footer-text strong { color: #fff; }
+.footer-note { font-size: 11px; color: rgba(255,255,255,.35); text-align: right; min-width: 180px; line-height: 1.5; }
+
+@media(max-width:760px){
+  .data-row { grid-template-columns: 28px 1fr; }
+  .cell.source, .cell.owner { display: none; }
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .body-wrap { padding: 24px 20px 60px; }
+  .intro { grid-template-columns: 1fr; }
+  .legend { flex-direction: column; gap: 10px; }
+  .footer { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-inner">
+    <div class="logo-lockup">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/>
+          <path d="M6 10h8M10 6v8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">Talent<span>Neuron</span></div>
+    </div>
+    <div class="header-center">
+      <div class="header-eyebrow">Amentum × TalentNeuron — SWP Platform</div>
+      <div class="header-title">Data <em>Gathering Guide</em></div>
+    </div>
+    <div class="header-badge">
+      <div class="badge-label">Use before</div>
+      <div class="badge-val">Value Assessment</div>
+    </div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="intro">
+    <div class="intro-text">
+      This guide tells Kevin exactly <strong>what data to gather, who owns it at Amentum, and how precise it needs to be</strong> before the Value Assessment session. The goal is a board-ready narrative on delivery capacity and SWP ROI — not a perfect spreadsheet. Estimates and ranges are acceptable throughout. Jason has already framed the strategic stakes; this session converts that framing into defensible numbers.
+    </div>
+    <div class="intro-who">
+      <div class="who-label">Who to involve</div>
+      <div class="who-row">
+        <div class="who-dot">JC</div>
+        <div><div class="who-name">Jason Cerrato</div><div class="who-role">Strategic context + process</div></div>
+      </div>
+      <div class="who-row">
+        <div class="who-dot teal">ST</div>
+        <div><div class="who-name">Shelby Terry</div><div class="who-role">TA ops + recruiter data</div></div>
+      </div>
+      <div class="who-row">
+        <div class="who-dot mid">DE</div>
+        <div><div class="who-name">Darrel Eplee</div><div class="who-role">Current TN usage data</div></div>
+      </div>
+      <div class="who-row">
+        <div class="who-dot gray">F</div>
+        <div><div class="who-name">Finance / FP&amp;A</div><div class="who-role">Headcount cost figures</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-group"><span class="legend-title">Data owner:</span></div>
+    <div class="legend-group"><span class="owner-badge owner-jason">Jason</span><span class="legend-label">Strategic + HR ops</span></div>
+    <div class="legend-group"><span class="owner-badge owner-shelby">Shelby</span><span class="legend-label">TA + recruiting</span></div>
+    <div class="legend-group"><span class="owner-badge owner-darrel">Darrel</span><span class="legend-label">Current TN usage</span></div>
+    <div class="legend-group"><span class="owner-badge owner-finance">Finance</span><span class="legend-label">Cost / FTE data</span></div>
+    <div class="legend-group"><span class="owner-badge owner-team">Team</span><span class="legend-label">Collaborative estimate</span></div>
+    <div style="width:1px;background:var(--border);margin:0 4px;"></div>
+    <div class="legend-group"><span class="precision exact">Exact</span><span class="legend-label">Precise figure needed</span></div>
+    <div class="legend-group"><span class="precision estimate">Estimate</span><span class="legend-label">Best guess acceptable</span></div>
+    <div class="legend-group"><span class="precision range">Range</span><span class="legend-label">Order of magnitude fine</span></div>
+    <div class="legend-group"><span class="precision qualitative">Qualitative</span><span class="legend-label">Language, not numbers</span></div>
+  </div>
+
+  <!-- ══════════ SECTION 1 ══════════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">1</div>
+      <div class="section-name">Current State — Manual Planning Cost</div>
+    </div>
+    <div class="callout teal" style="margin-bottom:12px;">
+      <strong>Context:</strong> Amentum has no enterprise SWP layer. Planning is fragmented across business units. This section quantifies the labor cost of doing manually what TalentNeuron's platform would consolidate and automate.
+    </div>
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">1</div>
+        <div class="cell data-point">
+          <div class="data-name">Number of people across HR and finance who spend meaningful time on workforce data compilation, planning inputs, or executive reporting</div>
+          <div class="data-desc">Include anyone who touches headcount data before it reaches a leadership audience — analysts, HR BPs, finance partners, BU planners who reconcile inputs for any enterprise view</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Jason. Ask: "Before any workforce report or plan reaches the ELT, how many people touch the underlying data — across all BUs and functions?" Don't accept just his direct team — push for an enterprise count.</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">2</div>
+        <div class="cell data-point">
+          <div class="data-name">Hours per person per month spent on manual workforce data gathering, reconciliation, and reporting</div>
+          <div class="data-desc">Focus specifically on hours that disappear if data is centralized — not total time in role. The E&amp;E HRBP who spent two months gathering inputs without a scenario is the right frame of reference.</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Jason + Shelby. Ask: "How many hours a month does your team spend pulling data together that should just already exist?"</div>
+        <div class="cell owner"><span class="owner-badge owner-team">Team</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">3</div>
+        <div class="cell data-point">
+          <div class="data-name">Fully-loaded hourly cost of the workforce planning / HR analytics function</div>
+          <div class="data-desc">Salary + benefits + overhead. Senior HR analysts and SWP professionals at a $14B GovCon typically run $90–$130/hr fully loaded.</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">Finance. If unavailable, use annual total comp ÷ 2,080 hours × 1.3 benefits multiplier.</div>
+        <div class="cell owner"><span class="owner-badge owner-finance">Finance</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">4</div>
+        <div class="cell data-point">
+          <div class="data-name">Number of distinct workforce planning outputs produced annually for ELT or board consumption</div>
+          <div class="data-desc">Program reviews, ELT talent updates, board talent slide, annual budget inputs — how many times per year does Jason produce a structured enterprise workforce picture?</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Jason. Each instance is a data compilation cost event. The count calibrates the annualized labor waste.</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SECTION 2 ══════════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">2</div>
+      <div class="section-name">Nuclear Ramp — Delivery Capacity Risk</div>
+    </div>
+    <div class="callout amber" style="margin-bottom:12px;">
+      <strong>Most important section.</strong> Jason has framed SWP as a delivery capacity problem, not an HR efficiency problem. The numbers here connect talent planning directly to program revenue. Note: Jason stated explicitly that Amentum's competitive set for nuclear talent is "changing — not the usual competitors." Use his framing throughout — it governs how this section is presented to the ELT.
+    </div>
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">5</div>
+        <div class="cell data-point">
+          <div class="data-name">Volume of critical nuclear and engineering hires planned per year in the US market</div>
+          <div class="data-desc">Separate from the publicly announced UK 3,000-hire commitment. Jason referenced a US nuclear renaissance ramp as a distinct delivery challenge. Need the approximate domestic annual hiring plan for E&amp;E.</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Jason + Shelby. The UK figure is public — the US counterpart is not. Ask specifically about the domestic nuclear and E&amp;E staffing plan tied to the program pipeline.</div>
+        <div class="cell owner"><span class="owner-badge owner-shelby">Shelby</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">6</div>
+        <div class="cell data-point">
+          <div class="data-name">Current average time-to-fill for critical nuclear and cleared engineering roles</div>
+          <div class="data-desc">Not the company-wide average — specifically the hardest-to-fill roles where delays have direct program delivery implications. Jason flagged that the inherited metric "means nothing" as an average; get the distribution tail.</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Shelby. Jason noted the reported average is unreliable. Shelby can speak to actual time-to-fill for the long-tail critical roles.</div>
+        <div class="cell owner"><span class="owner-badge owner-shelby">Shelby</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">7</div>
+        <div class="cell data-point">
+          <div class="data-name">Daily revenue or delivery cost associated with an unfilled critical role on a live program</div>
+          <div class="data-desc">What does a 30-day delay cost on a program like Sizewell C or a US nuclear cleanup site — in delayed delivery, performance risk, or penalty exposure? Even an order of magnitude is enough to build the case.</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">Finance / Jason. Program management fees or IDIQ delivery rate serves as a proxy. If Jason can't answer, ask him to connect Kevin with program finance for one data point.</div>
+        <div class="cell owner"><span class="owner-badge owner-finance">Finance</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">8</div>
+        <div class="cell data-point">
+          <div class="data-name">Current planning horizon Shelby's TA team has visibility into upcoming hiring demand</div>
+          <div class="data-desc">Shelby said "about 60 days" on the February call. Confirm and quantify: what is the ideal planning horizon if SWP were working correctly? The gap between current state and ideal is the direct value of the platform.</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Shelby. "60 days" is the confirmed current state. Ask: "What would the right horizon be if you had SWP feeding the TA plan?" The delta is the value.</div>
+        <div class="cell owner"><span class="owner-badge owner-shelby">Shelby</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">9</div>
+        <div class="cell data-point">
+          <div class="data-name">Number of active program pursuits where TA is currently providing staffing plan support</div>
+          <div class="data-desc">Shelby's team is embedded in BD and proposal support. Quantifying the volume of concurrent pursuits calibrates the planning pressure they're operating under simultaneously.</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Shelby. Ask: "How many active proposals is your team supporting staffing plans for right now, at the same time?"</div>
+        <div class="cell owner"><span class="owner-badge owner-shelby">Shelby</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SECTION 3 ══════════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">3</div>
+      <div class="section-name">Internal Mobility &amp; Redeployment Leakage</div>
+    </div>
+    <div class="callout purple" style="margin-bottom:12px;">
+      <strong>Jason named this explicitly.</strong> In his March email response to Kevin, Jason identified "subcontractor dependency and redeployment leakage" as cost levers. This section quantifies how much Amentum spends on external hires when internal talent could have been redeployed — and SWP is what surfaces that opportunity before the external search begins.
+    </div>
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">10</div>
+        <div class="cell data-point">
+          <div class="data-name">Estimated % of external hires where an internal candidate with the right skills existed but wasn't surfaced</div>
+          <div class="data-desc">The internal mobility gap — roles filled externally because the enterprise had no visibility into internal skills availability across 50,000 employees in 70+ countries</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Jason. Ask: "When you look at roles we filled externally last year — in engineering, PM, project controls — what % do you think we could have filled internally with better visibility?" Even a rough % is sufficient.</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">11</div>
+        <div class="cell data-point">
+          <div class="data-name">Average fully-loaded cost premium of an external technical hire vs. internal redeployment</div>
+          <div class="data-desc">Include recruiter fees, onboarding, and time-to-productivity premium. For cleared technical roles the premium typically runs $40–$80K over internal redeployment.</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">Finance. If unavailable, use 20–30% of first-year salary as industry benchmark. Amentum's cleared roles skew toward the higher end.</div>
+        <div class="cell owner"><span class="owner-badge owner-finance">Finance</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">12</div>
+        <div class="cell data-point">
+          <div class="data-name">Annual volume of external technical hires in categories where internal redeployment is plausible</div>
+          <div class="data-desc">Not all external hires — specifically the subset in engineering, program management, and project controls where Amentum has existing internal talent pools that aren't visible</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Shelby + Jason. Pull approximate external hire volume by function and filter to categories where internal mobility is plausible given Amentum's employee base.</div>
+        <div class="cell owner"><span class="owner-badge owner-shelby">Shelby</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">13</div>
+        <div class="cell data-point">
+          <div class="data-name">Subcontractor spend as a % of total labor cost, or approximate annual dollar figure</div>
+          <div class="data-desc">Jason named this in his March email as a cost lever. Even a directional figure anchors the leakage calculation and frames the internal mobility opportunity against real spend.</div>
+          <span class="precision range">Range</span>
+        </div>
+        <div class="cell source">Finance. If exact figure is sensitive, ask for an order of magnitude: "Is subcontractor spend closer to 5%, 10%, or 20% of total labor cost?"</div>
+        <div class="cell owner"><span class="owner-badge owner-finance">Finance</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SECTION 4 ══════════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">4</div>
+      <div class="section-name">Executive Reporting &amp; Board Narrative Credibility</div>
+    </div>
+    <div class="callout teal" style="margin-bottom:12px;">
+      <strong>Context:</strong> Jason told Kevin the CEO asks follow-on questions underneath "% of revenue-generating roles filled" — and Jason currently cannot answer them with data. He described the metric as one that "means nothing" as an average because the underlying data is inconsistent. This section quantifies the cost of that gap and the value of closing it.
+    </div>
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">14</div>
+        <div class="cell data-point">
+          <div class="data-name">The specific CEO follow-on questions that Jason currently cannot answer with data</div>
+          <div class="data-desc">Jason described Heller asking: which roles drive the most revenue, which are most competitive in the market, which are most future-ready. Confirm and add any others. These become the capability gaps SWP closes.</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Jason. Ask: "When you report to Heller on talent, what follow-up question does he ask that you can't currently answer with confidence?" Capture his exact words.</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">15</div>
+        <div class="cell data-point">
+          <div class="data-name">Hours per month Jason or his team spends assembling ELT and board-level workforce reporting</div>
+          <div class="data-desc">A proxy for the cost of operating without centralized data. Reveals how much senior talent time goes into data assembly vs. actual planning and analysis work.</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Jason. Ask: "How long does it take your team to assemble the workforce picture you take into a conversation with Heller or the ELT?"</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">16</div>
+        <div class="cell data-point">
+          <div class="data-name">What the ELT is specifically asking for as ROI proof on the remaining 40% of HR transformation budget</div>
+          <div class="data-desc">Jason confirmed 60% of the HR transformation budget is approved; the remaining 40% requires ELT sign-off from Heller, Travis Johnson, Steve Arnett, and CIO Luis. What is the specific objection or question blocking approval?</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Jason. This shapes how TN's ROI case gets framed for the ELT presentation. The answer tells Kevin exactly what objection the value case needs to answer.</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SECTION 5 ══════════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">5</div>
+      <div class="section-name">Platform Scope &amp; Usage Profile</div>
+    </div>
+    <div class="callout teal" style="margin-bottom:12px;">
+      <strong>Who to ask:</strong> Jason owns the strategic scope. Shelby owns TA usage. Darrel Eplee owns the current TN platform usage picture and can speak to where it's underutilized — which is the expansion story embedded in an existing relationship.
+    </div>
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">17</div>
+        <div class="cell data-point">
+          <div class="data-name">Phase 1 scope confirmed: E&amp;E as pilot, and which BUs are in phase 2 expansion</div>
+          <div class="data-desc">Jason identified Energy &amp; Environment as the SWP proving ground. Confirm whether Digital Solutions or Global Engineering Solutions are in phase 2 scope — this changes the enterprise value trajectory in the deck.</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Jason. Confirm E&amp;E as Phase 1 and get directional view on phase 2 — matters for the expansion multiplier in the value case.</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">18</div>
+        <div class="cell data-point">
+          <div class="data-name">Which geographies need LMI coverage to make SWP credible in Phase 1</div>
+          <div class="data-desc">Amentum operates in 70+ countries. E&amp;E nuclear work is concentrated in UK and US. Jason mentioned UK-to-US talent repatriation as a near-term tactic — which markets need external data to make scenarios defensible?</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Jason. Ask: "For the E&amp;E pilot, which five to ten markets matter most right now — where do you need external market data to build a credible scenario?"</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">19</div>
+        <div class="cell data-point">
+          <div class="data-name">State of the job architecture project — % complete and whether it creates a sequencing dependency for SWP</div>
+          <div class="data-desc">Jason confirmed a Total Rewards-led job architecture project is underway but described as "very manual and needs to become dynamic." Is it complete enough to feed SWP inputs, or is there a dependency that needs flagging in the proposal?</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Jason. Ask: "What's the rough % complete on job architecture, and is there a point where it needs to be further along before SWP can run on top of it reliably?"</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">20</div>
+        <div class="cell data-point">
+          <div class="data-name">Named users across HR, TA, finance, and BU leadership who would actively use the SWP platform</div>
+          <div class="data-desc">Walk through each use case — scenario modeling, recruiter capacity planning, executive reporting — and identify who touches each. This determines seat count and right-sizes the platform scope.</div>
+          <span class="precision estimate">Estimate</span>
+        </div>
+        <div class="cell source">Jason + Shelby. Walk each use case and map the user. Includes Jason's team, Shelby's team, E&amp;E HRBP, finance analysts consuming workforce data, and any BU leaders using scenario outputs.</div>
+        <div class="cell owner"><span class="owner-badge owner-team">Team</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">21</div>
+        <div class="cell data-point">
+          <div class="data-name">What Darrel is currently using TalentNeuron for, and what he is not using that he should be</div>
+          <div class="data-desc">Darrel said on the October call: "What I'm doing is super underutilized in TalentNeuron's capabilities." Getting specifics on current use vs. gap makes the expansion case concrete and grounds the platform entrenchment story.</div>
+          <span class="precision exact">Exact</span>
+        </div>
+        <div class="cell source">Darrel Eplee. Walk him through his current queries and outputs. The delta between what he does and what the platform can do is the expansion story for Kevin's proposal.</div>
+        <div class="cell owner"><span class="owner-badge owner-darrel">Darrel</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SECTION 6 ══════════ -->
+  <div class="section">
+    <div class="section-label">
+      <div class="section-num">6</div>
+      <div class="section-name">Cost of Inaction — Risk Statements</div>
+    </div>
+    <div class="callout amber" style="margin-bottom:12px;">
+      <strong>This section is qualitative — no numbers needed.</strong> Jason has already done the framing work. The goal is capturing it in his exact language, precisely enough to use verbatim in the ELT deck. His words carry more authority than a consultant's summary.
+    </div>
+    <div class="section-card">
+      <div class="data-row header-row">
+        <div class="cell num hdr">#</div>
+        <div class="cell hdr">Data point needed</div>
+        <div class="cell hdr">Where to find it</div>
+        <div class="cell hdr" style="justify-content:center;">Owner</div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">22</div>
+        <div class="cell data-point">
+          <div class="data-name">Jason's delivery risk statement — what happens if nuclear ramp can't be staffed fast enough</div>
+          <div class="data-desc">What does a capacity gap cost when Sizewell C or a US nuclear program ramps faster than the TA function can respond? Performance penalties, government client relationship risk, reputational exposure.</div>
+          <span class="precision qualitative">Qualitative</span>
+        </div>
+        <div class="cell source">Jason. Ask: "If SWP isn't working and a program ramps faster than we can staff it, what's the realistic worst case for that program?" Record his exact language.</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">23</div>
+        <div class="cell data-point">
+          <div class="data-name">The "blueprint problem" — cost of HR continuing to wait for the business to provide scenarios rather than leading them</div>
+          <div class="data-desc">Jason described the risk of "boiling the ocean" without direction. The E&amp;E HRBP spent two months gathering inputs without a scenario anchor. What slips if that cycle repeats?</div>
+          <span class="precision qualitative">Qualitative</span>
+        </div>
+        <div class="cell source">Jason. Ask: "If the E&amp;E HRBP doesn't have a scenario to work from by [date], what specifically slips?" This is the urgency frame for the ELT conversation.</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+      <div class="data-row">
+        <div class="cell num">24</div>
+        <div class="cell data-point">
+          <div class="data-name">The question Darren Burton asks Jason that he currently cannot answer with data</div>
+          <div class="data-desc">Darren Burton is the CPO approving the remaining 40% of HR transformation budget. Jason is actively building the ROI narrative for him. What is the gap between Jason's current pitch and what Burton needs to take it upstairs?</div>
+          <span class="precision qualitative">Qualitative</span>
+        </div>
+        <div class="cell source">Jason. Ask: "When you present to Darren, what's the question he asks that you can't yet answer with hard data?" That gap is what TalentNeuron fills.</div>
+        <div class="cell owner"><span class="owner-badge owner-jason">Jason</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-text">
+      Once this data is gathered, complete the <strong>Value Assessment worksheet</strong> with Jason and Shelby. Estimates and ranges are sufficient throughout — the goal is a board-ready narrative, not a perfect model. The completed worksheet feeds directly into the formal proposal. <strong>Pricing is never discussed in the prospect-facing session.</strong>
+    </div>
+    <div class="footer-note">TalentNeuron × Amentum<br>Confidential — AE Internal Use</div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TalentNeuron × Amentum — Value Assessment</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --tn-purple: #4A1FA8;
+  --tn-purple-mid: #6B3CC7;
+  --tn-purple-light: #EDE8FB;
+  --tn-purple-xlight: #F7F5FE;
+  --tn-teal: #00B4A6;
+  --tn-teal-light: #E0F7F5;
+  --tn-teal-dark: #007A70;
+  --ink: #0F0F1A;
+  --ink-2: #2A2A42;
+  --ink-3: #5E5E7A;
+  --ink-4: #9898B0;
+  --surface: #FAFAFA;
+  --surface-2: #F3F3F8;
+  --border: #E2E0EE;
+  --white: #FFFFFF;
+  --amber: #E8900A;
+  --amber-light: #FEF6E4;
+  --green: #0A7055;
+  --green-light: #E4F5F0;
+}
+
+html { font-size: 15px; scroll-behavior: smooth; }
+body { font-family: 'Inter', sans-serif; background: var(--surface); color: var(--ink); min-height: 100vh; }
+
+/* ── HEADER ── */
+.header { background: var(--tn-purple); padding: 0; position: relative; overflow: hidden; }
+.header-inner {
+  position: relative; z-index: 2;
+  padding: 36px 56px 32px;
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 32px;
+}
+.header-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(0,180,166,.18) 0%, transparent 60%),
+              radial-gradient(ellipse at 10% 80%, rgba(107,60,199,.4) 0%, transparent 50%);
+}
+.logo-lockup { display: flex; align-items: center; gap: 14px; }
+.logo-mark { width: 36px; height: 36px; background: var(--tn-teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+.logo-mark svg { width: 20px; height: 20px; }
+.logo-text { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -.01em; }
+.logo-text span { color: var(--tn-teal); }
+.header-center { flex: 1; text-align: center; }
+.header-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.5); margin-bottom: 8px; }
+.header-title { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; color: #fff; line-height: 1.2; letter-spacing: -.02em; }
+.header-title em { color: var(--tn-teal); font-style: normal; }
+.header-right { text-align: right; flex-shrink: 0; }
+.total-label { font-size: 11px; color: rgba(255,255,255,.5); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+.total-value { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 700; color: var(--tn-teal); letter-spacing: -.02em; line-height: 1; }
+.total-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 4px; }
+.progress-strip { height: 4px; background: rgba(255,255,255,.1); position: relative; }
+.progress-fill-strip { height: 100%; background: linear-gradient(90deg, var(--tn-teal), #5CF0E0); transition: width .5s ease; border-radius: 0 2px 2px 0; }
+
+/* ── LAYOUT ── */
+.body-wrap { max-width: 1060px; margin: 0 auto; padding: 40px 40px 80px; }
+
+/* ── INTRO ── */
+.intro-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 14px;
+  padding: 28px 32px; margin-bottom: 32px;
+  display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+}
+.intro-text { font-size: 14px; color: var(--ink-2); line-height: 1.65; }
+.intro-text strong { color: var(--tn-purple); }
+.intro-chips { display: flex; flex-direction: column; gap: 10px; min-width: 200px; }
+.intro-chip {
+  background: var(--tn-purple-xlight); border: 1px solid var(--tn-purple-light);
+  border-radius: 10px; padding: 14px 18px; text-align: center;
+}
+.chip-label { font-size: 10px; color: var(--tn-purple-mid); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 5px; font-weight: 500; }
+.chip-val { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--tn-purple); line-height: 1.3; }
+
+/* ── SECTION ── */
+.section { margin-bottom: 28px; }
+.section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+.section-num {
+  width: 32px; height: 32px; background: var(--tn-purple); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: #fff; flex-shrink: 0;
+}
+.section-title-wrap { flex: 1; }
+.section-title { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; color: var(--ink); letter-spacing: -.01em; }
+.section-subtitle { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
+.section-roi { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: var(--tn-teal-dark); }
+.section-roi-label { font-size: 11px; color: var(--ink-4); text-align: right; }
+.section-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+
+/* ── QUESTION BLOCK ── */
+.q-block {
+  padding: 22px 28px; border-bottom: 1px solid var(--border);
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start;
+}
+.q-block:last-child { border-bottom: none; }
+.q-block.full-width { grid-template-columns: 1fr; }
+.q-title { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.45; margin-bottom: 6px; }
+.q-desc { font-size: 13px; color: var(--ink-3); line-height: 1.6; }
+
+input[type="number"], input[type="text"], select, textarea {
+  width: 100%; background: var(--surface-2); border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 10px 14px; font-size: 13.5px;
+  font-family: 'Inter', sans-serif; color: var(--ink);
+  transition: border-color .15s, box-shadow .15s; outline: none;
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; }
+input:focus, select:focus, textarea:focus {
+  border-color: var(--tn-purple-mid); box-shadow: 0 0 0 3px rgba(74,31,168,.08); background: var(--white);
+}
+textarea { resize: vertical; min-height: 72px; }
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.field-label { font-size: 11px; color: var(--ink-4); font-weight: 500; margin-bottom: 6px; letter-spacing: .04em; }
+
+.calc-result {
+  background: var(--tn-purple-xlight); border: 1px solid var(--tn-purple-light);
+  border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.calc-result-label { font-size: 12px; color: var(--tn-purple-mid); font-weight: 500; }
+.calc-result-value { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--tn-purple); }
+
+.teal-callout {
+  background: var(--tn-teal-light); border-left: 4px solid var(--tn-teal);
+  border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 0 28px 22px;
+  font-size: 13px; color: var(--ink-2); line-height: 1.6;
+}
+.teal-callout strong { color: var(--tn-teal-dark); }
+
+/* ── SUMMARY ── */
+.summary-section {
+  background: var(--tn-purple); border-radius: 16px; padding: 36px 40px;
+  margin-top: 36px; position: relative; overflow: hidden;
+}
+.summary-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 90% 20%, rgba(0,180,166,.2) 0%, transparent 50%); }
+.summary-inner { position: relative; z-index: 2; }
+.summary-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 24px; letter-spacing: -.01em; }
+.summary-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 20px; }
+.summary-card { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 10px; padding: 16px; }
+.sc-label { font-size: 10px; color: rgba(255,255,255,.5); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 6px; }
+.sc-val { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -.01em; line-height: 1; }
+.sc-val.teal { color: var(--tn-teal); }
+.roi-bar-wrap { margin-bottom: 24px; }
+.roi-bar-label { display: flex; justify-content: space-between; font-size: 12px; color: rgba(255,255,255,.6); margin-bottom: 8px; }
+.roi-bar-track { height: 8px; background: rgba(255,255,255,.12); border-radius: 4px; overflow: hidden; }
+.roi-bar-fill { height: 100%; background: linear-gradient(90deg, var(--tn-teal), #5CF0E0); border-radius: 4px; transition: width .6s ease; min-width: 2px; }
+.narrative-box { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 10px; padding: 18px 22px; }
+.narrative-label { font-size: 10px; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 10px; font-weight: 500; }
+.narrative-text { font-size: 13.5px; color: rgba(255,255,255,.85); line-height: 1.7; }
+
+@media(max-width:760px){
+  .q-block { grid-template-columns: 1fr; }
+  .input-row { grid-template-columns: 1fr; }
+  .summary-grid { grid-template-columns: 1fr 1fr; }
+  .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .body-wrap { padding: 24px 20px 60px; }
+  .intro-card { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-bg"></div>
+  <div class="header-inner">
+    <div class="logo-lockup">
+      <div class="logo-mark">
+        <svg viewBox="0 0 20 20" fill="none">
+          <circle cx="10" cy="10" r="8" stroke="white" stroke-width="1.5"/>
+          <path d="M6 10h8M10 6v8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">Talent<span>Neuron</span></div>
+    </div>
+    <div class="header-center">
+      <div class="header-eyebrow">Amentum × TalentNeuron — Strategic Workforce Planning</div>
+      <div class="header-title">Value <em>Assessment</em></div>
+    </div>
+    <div class="header-right">
+      <div class="total-label">Total Annual Value Identified</div>
+      <div class="total-value" id="grand-total">$0</div>
+      <div class="total-sub">Complete together · estimates are expected</div>
+    </div>
+  </div>
+  <div class="progress-strip">
+    <div class="progress-fill-strip" id="progress-strip" style="width:0%"></div>
+  </div>
+</div>
+
+<div class="body-wrap">
+
+  <div class="intro-card">
+    <div class="intro-text">
+      This worksheet helps quantify the business value of TalentNeuron's Strategic Workforce Planning platform for Amentum across four measurable value levers. Work through each section together — estimates and ranges are expected throughout. The output is a <strong>board-ready value summary</strong> that will be included in the formal proposal. Pricing is not part of this session.
+    </div>
+    <div class="intro-chips">
+      <div class="intro-chip">
+        <div class="chip-label">Phase 1 Pilot</div>
+        <div class="chip-val">Energy &amp; Environment</div>
+      </div>
+      <div class="intro-chip">
+        <div class="chip-label">Standard</div>
+        <div class="chip-val">Value must exceed investment by 10×</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ LEVER 1 ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Manual Planning &amp; Reporting Cost</div>
+        <div class="section-subtitle">The labor cost of operating without centralized workforce intelligence today</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 1 Value</div>
+        <div class="section-roi" id="l1-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">How many people across HR, finance, and the business units spend meaningful time manually compiling workforce data, planning inputs, or executive reporting?</div>
+          <div class="q-desc">Include anyone who touches headcount data before it reaches a leadership audience — from analysts pulling reports to HR BPs who reconcile inconsistent BU inputs. Without a single enterprise SWP layer, every planning cycle begins with manual data assembly.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">People involved in manual planning</div>
+              <input type="number" id="plan-people" placeholder="e.g. 5" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Hours per person / month</div>
+              <input type="number" id="plan-hours" placeholder="e.g. 20" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="field-label">Avg fully-loaded hourly cost ($)</div>
+          <input type="number" id="plan-rate" placeholder="e.g. 110" min="0" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Annual cost of manual planning</div>
+            <div class="calc-result-value" id="plan-cost">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">What percentage of that manual effort would a centralized SWP platform realistically eliminate or repurpose toward higher-value analysis?</div>
+          <div class="q-desc">Walk through the current process step by step — data pulls, cross-BU reconciliation, executive deck assembly, ad hoc queries. The steps that disappear with a platform are typically 50–70% of total effort. What remains is human judgment — which is exactly where your team's time should go.</div>
+        </div>
+        <div>
+          <div class="field-label">% of manual effort eliminated by platform</div>
+          <input type="number" id="plan-pct" placeholder="e.g. 65" min="0" max="100" oninput="calc()" onchange="calc()" style="margin-bottom:12px;">
+          <div class="calc-result">
+            <div class="calc-result-label">Annual efficiency savings (Lever 1)</div>
+            <div class="calc-result-value" id="plan-savings">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teal-callout">
+        <strong>Note:</strong> This lever captures the direct labor cost of manual planning only. It does not account for the quality and speed improvement in executive reporting, or the cost of planning decisions made on incomplete or inconsistent data.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ LEVER 2 ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Delivery Capacity — Program Staffing Risk</div>
+        <div class="section-subtitle">The revenue and delivery risk of staffing critical programs reactively rather than proactively</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 2 Value</div>
+        <div class="section-roi" id="l2-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">How many critical nuclear and engineering roles does Amentum plan to fill per year — and what is the current average time-to-fill for those roles?</div>
+          <div class="q-desc">Amentum's backlog converts to revenue only when programs are staffed and delivering. These are not standard recruiting cycles — nuclear and cleared engineering roles operate in a market where the DOE reports 63% of employers find hiring "very difficult." SWP gives the TA function a proactive planning horizon that currently doesn't exist.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">Critical hires / year (nuclear + cleared eng.)</div>
+              <input type="number" id="del-hires" placeholder="e.g. 300" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Current avg days to fill (critical roles)</div>
+              <input type="number" id="del-ttf" placeholder="e.g. 90" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="field-label">Days saved per hire with proactive SWP-driven planning</div>
+          <input type="number" id="del-days-saved" placeholder="e.g. 20" min="0" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Total recruiting days recovered / year</div>
+            <div class="calc-result-value" id="del-days-total">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">What is the daily delivery cost or revenue impact of an unfilled critical role on a live program?</div>
+          <div class="q-desc">A delayed start on a nuclear program — a site director, project controls lead, or safety case engineer — creates real downstream cost. This is the number that makes the board conversation happen, and it transforms the SWP investment from an HR cost to a delivery assurance calculation. Even an order of magnitude is sufficient.</div>
+        </div>
+        <div>
+          <div class="field-label">Daily delivery cost per unfilled critical role ($)</div>
+          <input type="number" id="del-daily-cost" placeholder="e.g. 8000" min="0" oninput="calc()" onchange="calc()">
+          <div class="field-label" style="margin-top:10px;">% of critical hires where proactive planning materially reduces delay</div>
+          <input type="number" id="del-pct-impact" placeholder="e.g. 40" min="0" max="100" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Delivery risk value avoided (Lever 2)</div>
+            <div class="calc-result-value" id="del-value">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teal-callout">
+        <strong>Key question for your team:</strong> Your TA function currently has approximately 60 days of forward visibility into hiring demand. What would a 6-month horizon be worth to a business unit running a nuclear ramp on a contract already won?
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ LEVER 3 ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Internal Mobility &amp; Redeployment Leakage</div>
+        <div class="section-subtitle">The cost of hiring externally when internal talent could have been redeployed</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 3 Value</div>
+        <div class="section-roi" id="l3-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">For technical and engineering roles filled externally, what percentage could have been filled internally if there had been enterprise-wide visibility into skills and availability?</div>
+          <div class="q-desc">With 50,000 employees across 70+ countries, Amentum's internal talent pool is a significantly underutilized asset. Without a centralized view of who has what skills and when they become available, the default is an external hire — regardless of whether the right person already exists in the organization. SWP surfaces that talent before the external search begins.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">External technical / eng. hires / year</div>
+              <input type="number" id="mob-ext-hires" placeholder="e.g. 500" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">% addressable by internal redeployment</div>
+              <input type="number" id="mob-pct" placeholder="e.g. 15" min="0" max="100" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="field-label">Avg premium cost of external vs. internal hire ($)</div>
+          <input type="number" id="mob-premium" placeholder="e.g. 55000" min="0" oninput="calc()" onchange="calc()">
+          <div class="calc-result">
+            <div class="calc-result-label">Annual redeployment savings (Lever 3)</div>
+            <div class="calc-result-value" id="mob-value">—</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="teal-callout">
+        <strong>Note:</strong> For cleared technical roles, the premium cost of an external hire over an internal redeployment typically includes 20–30% of first-year salary in search and onboarding costs, plus a time-to-productivity premium for new hires requiring program and security orientation.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ LEVER 4 ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Platform Expansion — E&amp;E to Enterprise</div>
+        <div class="section-subtitle">Value trajectory as SWP scales from the E&amp;E pilot to the broader Amentum enterprise</div>
+      </div>
+      <div style="text-align:right">
+        <div class="section-roi-label">Lever 4 Value</div>
+        <div class="section-roi" id="l4-total">$0</div>
+      </div>
+    </div>
+    <div class="section-card">
+
+      <div class="q-block">
+        <div>
+          <div class="q-title">Energy &amp; Environment is the pilot. How many additional Amentum business units have a genuine near-term use case for SWP — and what does the value trajectory look like at enterprise scale?</div>
+          <div class="q-desc">Amentum has two revenue segments and multiple distinct operating units. Each has workforce planning requirements, a need for labor market intelligence in competitive talent markets, and leadership audiences who will ask the same questions the E&amp;E pilot is designed to answer. The pilot proves the model; expansion is where the investment fully pays.</div>
+        </div>
+        <div>
+          <div class="input-row">
+            <div>
+              <div class="field-label">BUs in realistic expansion scope (beyond E&amp;E)</div>
+              <input type="number" id="exp-bus" placeholder="e.g. 2" min="0" oninput="calc()" onchange="calc()">
+            </div>
+            <div>
+              <div class="field-label">Estimated value per BU at similar scope ($K/yr)</div>
+              <input type="number" id="exp-val" placeholder="e.g. 200" min="0" oninput="calc()" onchange="calc()">
+            </div>
+          </div>
+          <div class="calc-result">
+            <div class="calc-result-label">Enterprise expansion potential (annual)</div>
+            <div class="calc-result-value" id="exp-value">—</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ LEVER 5 ═══════ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title-wrap">
+        <div class="section-title">Cost of Inaction</div>
+        <div class="section-subtitle">What not solving this problem costs Amentum over the next 12–24 months</div>
+      </div>
+    </div>
+    <div class="section-card">
+      <div class="q-block full-width">
+        <div>
+          <div class="q-title">If this problem isn't solved in the next 12 months, what does the realistic worst-case scenario look like for Amentum's ability to deliver on its nuclear and defense pipeline?</div>
+          <div class="q-desc">Leadership approves investments faster when the cost of not investing is clear. The backlog is won — the question is whether the workforce can deliver it. Completing this section turns the conversation from "can we afford this" to "what does it cost us if we don't."</div>
+        </div>
+      </div>
+      <div style="padding:0 28px 24px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);">Delivery risk</div>
+          <textarea id="risk-delivery" placeholder="e.g. 'If we can't staff the nuclear ramp fast enough, we face performance penalties and risk relationships with government-backed clients...'"></textarea>
+        </div>
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);">Planning capacity risk</div>
+          <textarea id="risk-planning" placeholder="e.g. 'The E&amp;E HRBP spent 2 months gathering inputs without a scenario anchor. Without SWP that cycle repeats — and the business loses patience with HR...'"></textarea>
+        </div>
+        <div>
+          <div class="field-label" style="font-weight:600;color:var(--ink-2);">Talent market risk</div>
+          <textarea id="risk-talent" placeholder="e.g. 'The competitive set for nuclear talent is changing — it is no longer just the usual peers — and we are navigating that without current market intelligence...'"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ SUMMARY ═══════ -->
+  <div class="summary-section">
+    <div class="summary-bg"></div>
+    <div class="summary-inner">
+      <div class="summary-title">Value Summary</div>
+      <div class="summary-grid">
+        <div class="summary-card"><div class="sc-label">Lever 1 — Planning Cost</div><div class="sc-val teal" id="s-l1">$0</div></div>
+        <div class="summary-card"><div class="sc-label">Lever 2 — Delivery Risk</div><div class="sc-val teal" id="s-l2">$0</div></div>
+        <div class="summary-card"><div class="sc-label">Lever 3 — Redeployment</div><div class="sc-val teal" id="s-l3">$0</div></div>
+        <div class="summary-card"><div class="sc-label">Lever 4 — Expansion</div><div class="sc-val teal" id="s-l4">$0</div></div>
+      </div>
+      <div class="summary-grid" style="grid-template-columns:1fr 1fr;margin-bottom:24px;">
+        <div class="summary-card"><div class="sc-label">Total Annual Value Identified</div><div class="sc-val teal" id="s-total">$0</div></div>
+        <div class="summary-card"><div class="sc-label">ROI Multiple &amp; Payback</div><div class="sc-val" style="font-size:14px;color:rgba(255,255,255,.5);font-family:'Inter',sans-serif;font-weight:400;line-height:1.4;">Included in formal proposal</div></div>
+      </div>
+      <div class="roi-bar-wrap">
+        <div class="roi-bar-label"><span>Total value identified</span><span id="bar-pct-label">$0</span></div>
+        <div class="roi-bar-track"><div class="roi-bar-fill" id="roi-bar" style="width:0%"></div></div>
+      </div>
+      <div class="narrative-box">
+        <div class="narrative-label">Value Summary — auto-generated</div>
+        <div class="narrative-text" id="narrative">Complete the sections above to generate your value summary.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="position:fixed;bottom:20px;right:24px;display:flex;gap:10px;align-items:center;z-index:100;">
+  <div id="save-indicator" style="font-size:11px;color:#9898B0;font-family:'Inter',sans-serif;opacity:0;transition:opacity .4s;">✓ Saved</div>
+  <button onclick="clearState()" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:#9898B0;background:#fff;border:1px solid #E2E0EE;border-radius:8px;padding:8px 14px;cursor:pointer;">Reset</button>
+</div>
+
+<script>
+function fmt(n) {
+  if (!n || isNaN(n) || n === 0) return '—';
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+  return '$' + Math.round(n);
+}
+function fmtS(n) {
+  if (!n || isNaN(n) || n === 0) return '$0';
+  if (n >= 1000000) return '$' + (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return '$' + Math.round(n/1000) + 'K';
+  return '$' + Math.round(n);
+}
+function val(id) { const el = document.getElementById(id); return el ? (parseFloat(el.value) || 0) : 0; }
+function set(id, t) { const el = document.getElementById(id); if (el) el.textContent = t; }
+
+function calc() {
+  const planCost = val('plan-people') * val('plan-hours') * val('plan-rate') * 12;
+  const planSavings = planCost * (val('plan-pct') / 100);
+  set('plan-cost', planCost ? fmt(planCost) : '—');
+  set('plan-savings', planSavings ? fmt(planSavings) : '—');
+  const l1 = planSavings;
+  set('l1-total', fmtS(l1)); set('s-l1', fmtS(l1));
+
+  const daysRecovered = val('del-hires') * val('del-days-saved');
+  set('del-days-total', daysRecovered ? daysRecovered.toLocaleString() + ' days' : '—');
+  const delValue = val('del-hires') * (val('del-pct-impact')/100) * val('del-days-saved') * val('del-daily-cost');
+  set('del-value', delValue ? fmt(delValue) : '—');
+  const l2 = delValue;
+  set('l2-total', fmtS(l2)); set('s-l2', fmtS(l2));
+
+  const mobVal = val('mob-ext-hires') * (val('mob-pct')/100) * val('mob-premium');
+  set('mob-value', mobVal ? fmt(mobVal) : '—');
+  const l3 = mobVal;
+  set('l3-total', fmtS(l3)); set('s-l3', fmtS(l3));
+
+  const expVal = val('exp-bus') * val('exp-val') * 1000;
+  set('exp-value', expVal ? fmt(expVal) : '—');
+  const l4 = expVal;
+  set('l4-total', fmtS(l4)); set('s-l4', fmtS(l4));
+
+  const total = l1 + l2 + l3 + l4;
+  set('grand-total', fmtS(total)); set('s-total', fmtS(total));
+
+  const barPct = total > 0 ? Math.min(100, Math.round((total / 5000000) * 100)) : 0;
+  document.getElementById('roi-bar').style.width = barPct + '%';
+  set('bar-pct-label', fmtS(total));
+
+  const inputs = document.querySelectorAll('input[type="number"]');
+  let filled = 0;
+  inputs.forEach(i => { if (i.value && parseFloat(i.value) > 0) filled++; });
+  document.getElementById('progress-strip').style.width = Math.min(100, Math.round((filled/inputs.length)*100)) + '%';
+
+  if (total > 0) {
+    let parts = [];
+    if (l1 > 0) parts.push(`${fmtS(l1)} in manual planning and reporting efficiency`);
+    if (l2 > 0) parts.push(`${fmtS(l2)} in delivery capacity and program staffing risk avoidance`);
+    if (l3 > 0) parts.push(`${fmtS(l3)} in internal redeployment and reduced external hiring cost`);
+    if (l4 > 0) parts.push(`${fmtS(l4)} in enterprise expansion potential`);
+    const levers = parts.length > 1 ? parts.slice(0,-1).join(', ') + ', and ' + parts[parts.length-1] : (parts[0] || '');
+    set('narrative', `This analysis identifies ${fmtS(total)} in measurable annual value across ${parts.length} lever${parts.length > 1 ? 's' : ''} — ${levers}. TalentNeuron's SWP platform positions Amentum to convert its program backlog into realized revenue by solving the delivery capacity problem at its source: knowing where qualified nuclear and engineering talent exists, what it costs, and how to plan for it before program ramps begin. ROI multiple and payback period will be included in the formal proposal.`);
+  } else {
+    set('narrative', 'Complete the sections above to generate your value summary.');
+  }
+}
+
+const KEY = 'tn_amentum_prospect_v2';
+const NUM_IDS = ['plan-people','plan-hours','plan-rate','plan-pct','del-hires','del-ttf','del-days-saved','del-daily-cost','del-pct-impact','mob-ext-hires','mob-pct','mob-premium','exp-bus','exp-val'];
+const TEXT_IDS = ['risk-delivery','risk-planning','risk-talent'];
+
+function saveState() {
+  const s = {};
+  NUM_IDS.forEach(id => { const el = document.getElementById(id); if(el) s[id] = el.value; });
+  TEXT_IDS.forEach(id => { const el = document.getElementById(id); if(el) s[id] = el.value; });
+  try { localStorage.setItem(KEY, JSON.stringify(s)); } catch(e) {}
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(KEY); if (!raw) return;
+    const s = JSON.parse(raw);
+    NUM_IDS.forEach(id => { const el = document.getElementById(id); if(el && s[id] !== undefined) el.value = s[id]; });
+    TEXT_IDS.forEach(id => { const el = document.getElementById(id); if(el && s[id] !== undefined) el.value = s[id]; });
+  } catch(e) {}
+}
+function clearState() {
+  if (confirm('Clear all data and start fresh?')) {
+    try { localStorage.removeItem(KEY); } catch(e) {}
+    NUM_IDS.forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+    TEXT_IDS.forEach(id => { const el = document.getElementById(id); if(el) el.value = ''; });
+    calc();
+  }
+}
+document.querySelectorAll('input, textarea').forEach(el => {
+  el.addEventListener('input', () => { saveState(); const ind = document.getElementById('save-indicator'); ind.style.opacity='1'; setTimeout(()=>ind.style.opacity='0',1500); });
+  el.addEventListener('change', saveState);
+});
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => { loadState(); calc(); });
+} else { loadState(); calc(); }
+</script>
+</body>
+</html>
